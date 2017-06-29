@@ -1,0 +1,117 @@
+<div class="clearfix">
+	<div class="c_left">
+		<article>
+			<div class="content admin_content">
+				<div class="admin_nav">
+					<div class="search">
+						<p>
+							<div class="input_div">
+								<div class="select ">
+									在结果中搜索
+									<!--<div class="btn btn-info" ng-click="ngClick()">
+								        <span>列表</span>
+								    </div>-->
+								</div>
+
+								<div class="s_btn">
+									<input type="text" name="search" class="input" ng-model='searchId' style="width:80%" />
+									<i class="fa fa-search cur" ng-click='scopeClick()'></i></div>
+							</div>
+						</p>
+					</div>
+
+					<div class="logo"></div>
+					<ul class="main_list">
+						<li>
+							<a href="">内容类型</a>
+							<ul class="sub_list">
+								<li ng-repeat="dd in datac">
+									<input type="checkbox" name="ContentTypelist" value="{{dd.TypeID}}" aName='{{dd.TypeValue}}' TypeN='{{dd.TypeName}}'>{{dd.TypeName}}-[{{dd.TypeCount}}]
+								</li>
+							</ul>
+							<div>
+								<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>
+								<!--<button name="submit" type="button" class="btn btn_red btn_s">精炼</button>-->
+							</div>
+						</li>
+						<li>
+							<a href="">发表日期</a>
+							<ul class="sub_list">
+								<li ng-repeat="dt in datat">
+									<input type="checkbox" name="YearList" value="{{dt.TypeID}}" aName='{{dt.TypeName}}'>{{dt.TypeName}}-[{{dt.TypeCount}}]
+								</li>
+							</ul>
+							<div>
+								<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>
+								<!--<button name="submit" type="button" class="btn btn_red btn_s">精炼</button>-->
+							</div>
+						</li>
+						<li>
+							<a href="">语言</a>
+							<ul class="sub_list">
+								<li ng-repeat="dl in datay">
+									<input type="checkbox" name="LanguageList" value="{{dl.TypeID}}" aName='{{dl.TypeName}}'>{{dl.TypeName}}-[{{dl.TypeCount}}]
+								</li>
+							</ul>
+							<div>
+								<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>
+								<!--<button name="submit" type="button" class="btn btn_red btn_s">精炼</button>-->
+							</div>
+						</li>
+						<li>
+							<a href="">收录类型</a>
+							<ul class="sub_list">
+								<li ng-repeat="ds in datas">
+									<input type="checkbox" name="IndexedTypeList" value="{{ds.TypeID}}" aName='{{ds.TypeName}}'>{{ds.TypeName}}-[{{ds.TypeCount}}]
+								</li>
+							</ul>
+							<div>
+								<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>
+								<!--<button name="submit" type="button" class="btn btn_red btn_s">精炼</button>-->
+							</div>
+						</li>
+						<li>
+							<a href="">全文</a>
+							<ul class="sub_list">
+								<li ng-repeat="dq in dataq">
+									<input type="radio" name="QuanwenList" data-value='{{dq.TypeName}}'>{{dq.TypeName}}[{{dq.TypeCount}}]
+								</li>
+							</ul>
+							<div>
+								<!--<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>-->
+								<!--<button name="submit" type="button" class="btn btn_red btn_s">精炼</button>-->
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</article>
+	</div>
+	
+	<div class="c_right">
+		<aside>
+			<div class="cr_cw">
+				<div data-ui-view></div>
+			</div>
+		</aside>
+	</div>
+</div>
+<style type="text/css">
+	.btn_jl {
+		margin: 10px auto
+	}
+</style>
+<script>
+	$(function() {
+		$(".more").click(function() {
+			$(this).parent().parent().find("li:nth-child(n+5)").toggleClass("show");
+		});
+	})
+</script>
+<style>
+	ul.sub_list li {
+		font-size: 14px !important;
+		font-weight: normal !important;
+		padding: 2px 15px;
+	}
+</style>

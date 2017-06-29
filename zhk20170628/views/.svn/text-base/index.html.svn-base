@@ -1,0 +1,270 @@
+﻿<style>
+	/*登录样式*/
+	
+	.login_message {
+		color: red;
+		text-align: center;
+	}
+	/*注册样式*/
+	
+	.err_emilmsg {
+		color: red;
+		text-align: center;
+		margin: 10px auto;
+		font-size: 14px;
+		display: none;
+		padding: 0 10px;
+	}
+	
+	.not_empty {
+		width: 20%;
+		color: red;
+		text-align: center;
+		margin: 10px auto;
+		font-size: 14px;
+	}
+	
+	.max_num {
+		width: 80%;
+		color: red;
+		text-align: center;
+		margin: 0 auto;
+		font-size: 14px;
+		display: none;
+	}
+	
+	.woring_msg {
+		width: 80%;
+		color: red;
+		text-align: center;
+		margin: 10px auto;
+		font-size: 14px;
+}
+	
+	.nav_login {
+		font-size: 14px;
+		color: white;
+		margin: 0 15px;
+		cursor: pointer;
+	}
+	
+	.kexi {
+		font-size: 14px;
+		color: white;
+		padding: 0 20px;
+		line-height: 35px;
+		text-align: center;
+		cursor: pointer;
+	}
+	
+	.active {
+		background-color: whitesmoke;
+		height: 33px;
+		color: darkred;
+	}
+</style>
+
+<!--//刷新页面-->
+<div class="container">
+	<div class="header">
+		<div class="head_cont">
+			<div class="search">
+				<div class="input_div">
+					<div class="select">
+						<select id="slt" style="border: 0;">
+							<option value="0">标题</option>
+							<option value="1">作者</option>
+						</select>
+					</div>
+					<input type="text" name="search" class="input" ng-model='topFind' />
+					<div class="s_btn" ng-click='topFinds()'>
+						<i class="fa fa-search"></i>
+					</div>
+				</div>
+				<a class="global_src">高级搜索</a>
+			</div>
+			<div class="logo"></div>
+		</div>
+		<div class="nav">
+			<ul>
+				<!--自己添加的在登录成功之前的index页面中的右上角的登录注册行-->
+				<ul class="right_cont" id="right_login">
+					<li id="login">
+						<li class="nav_login" ng-click="Login()">登录</li>
+					</li>
+					<li class="nav_login" ng-click="Regist()">注册</li>
+
+					<li class="nav_login" ng-click='help'>帮助</li>
+				</ul>
+
+				<!--自己添加的在点击成功之后的显示的nav-->
+				<ul class="right_cont" id="right_logined" style="display: none;">
+					<li>欢迎：</li>
+					<li style="cursor: pointer;" ng-click="personal()">
+						<a href="javascript:void(0);">
+							<span class="avatar login"><img ng-src={{imgHeadUrl}}></span>
+							<span style='margin-left:20px;'>{{fullName}}</span>
+						</a>
+					</li>
+
+					<li style="cursor: pointer;color:white;" id="ack" ng-click="ack()" name="ia">
+						<a href="javascript:void(0);">个人工作室管理</a>
+					</li>
+					<li>
+						<a id="houtai" href="http://192.168.199.8:8088/wbsWEB?Ticket={{ticket}}" target="_blank">后台管理</a>
+					</li>
+					<li style="color: white;margin: 0 15px;cursor:pointer" ng-click="logout()">退出</li>
+				</ul>
+
+				<li id="ain" onclick="ain()" class="kexi" ng-click="Ain()" style="font-size: 14px;">首页</li>
+				<li id="ay" class="" ng-click="Ay()">
+					<a href='javascript:void(0);'>院系科室</a>
+				</li>
+				<li id="am" class="" kexi ng-click="Am()">
+					<a href='javascript:void(0);'>机构学者</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--登录页面-->
+<div class="popup login_form" id="Login" style="display: none;">
+	<div class="mask"></div>
+	<div class="popup_cont  normal" style="width: 350px;margin-top: -170px;margin-left: -190px;">
+		<h2>
+			<span class="close">
+				<i class="fa fa-times"></i>
+			</span> 登录
+		</h2>
+		<div class="join_form">
+			<div class="input_div">
+				<label>用户名:</label>&emsp;
+				<input id="UserName" style="width: 45%;" type="text" class="ng-pristine ng-untouched ng-valid ng-empty" id="username" ng-model="userName" value="zhwwang@fudan.edu.cn">
+			</div>
+			<div class="input_div">
+				<label>密&emsp;码:</label>&emsp;
+				<input id="PassWord" type="password" class="ng-pristine ng-untouched ng-valid ng-empty" id="password" ng-model="passWord" value="123" style="width: 45%;">
+			</div>
+			<div class="input_div">
+				<label>验证码:</label>&emsp;
+				<input id="yanzheng" style="width: 25%;" type="text" class="ng-pristine ng-untouched ng-valid ng-empty">
+				<label id="yanzhengma" ng-model="CodeVal" class="ng-pristine ng-untouched ng-valid ng-empty" value="123" style="display:inline-block;width: 25%;height: 25px;border: 1px solid grey;margin-bottom:-8px;margin-left: 10px;text-align:center;background-color:gainsboro;color:darkred;border-radius:5px;" ng-click="yanzheng()">{{code}}</label>
+				<div class="login_message" id="emptyYzm"></div>
+			</div>
+			<br />
+			<div class="input_btn" style="display: inline-block;width:106px;font-size: 14px;font-weight: 400;">
+				<label>&ensp;&ensp;</label>
+				<button type="button" class="btn btn_red btn_login" id="Btn_Login" ng-click="login()" style="font-size: 14px;font-weight: 400;margin-top: 10px;">	登录					
+			    </button>
+			</div>
+			<div id="login_learn" class="login_message">{{errormessage}}</div>
+			<div class="login_message" id="login_result"></div>
+
+		</div>
+	</div>
+</div>
+<!--注册页面-->
+<div class="popup reg_form" id="Regist" style="display: none ;">
+	<div class="mask"></div>
+	<div class="popup_cont normal" style="width: 550px;margin-top: -300px;">
+		<h2><span class="close"><i class="fa fa-times"></i></span> 注册</h2>
+		<div class="join_form inline_form">
+			<div class="input_div">
+				<label>电子邮件：</label>
+				<input type="text" id="emilBox" ng-model="regEmil" style="width: 22%;margin-right: 5px;">
+				<span id="emil_result" class="not_empty" style="font-size: 12px;">*电子邮件不能为空</span>
+			</div>
+			
+			<div class="input_div">
+				<label>姓：</label>
+				<input type="text" class="inline_input" placeholder="中文" id="sexChinese" ng-model="fristName">
+				<span id="Chinesesex" class="not_empty" style="font-size: 12px;">*姓不能为空</span>
+				</br>
+				<input id="sexpinYin" ng-model="sexPY" type="text" class="inline_input" placeholder="拼音" style="margin-top:10px ;margin-left: 136px;">
+				<span id="emptysexPY" class="not_empty" style="font-size: 12px;" >*姓(拼音)不能为空</span>
+			</div>
+
+			<div class="input_div" style="margin-bottom: 0;">
+				<label>名：</label>
+				<input type="text" class="inline_input" placeholder="中文" id="nameChinese" ng-model="lastName">
+				<span id="Chinesename" class="not_empty" style="font-size: 12px;" >*名不能为空</span>
+				</br>
+				<input id="namepinYin" ng-model="namePY" name="" type="text" class="inline_input" placeholder="拼音" style="margin-top:10px ;margin-left: 136px;">
+				<span id="emptyNamePY" class="not_empty" style="font-size: 12px;">*名(拼音)不能为空</span>
+			</div>
+
+			<div class="input_div" style="margin-bottom: 0;">
+				<label>&ensp;&ensp;</label>
+				<span class="font_red" style="font-size: 12px;">多汉字名的拼音中间用空格分开</span>
+			</div>
+
+			<div class="input_div">
+				<label>单位：</label>
+				<select id="unit_select" ng-click="unit_click()">
+					<option selected="" value="请选择单位" ng-repeat="item in unit" aa={{item.ParentID}} UnitID={{item.CID}}>{{item.CollegeName}}</option>
+				</select>
+			</div>
+
+			<div class="input_div">
+				<label>部门：</label>
+				<select id="department_select" ng-click="department_click()">
+					<option selected="" value="请选择部门" ng-repeat="item in department" DeptID={{item.CID}}>{{item.CollegeName}}</option>
+				</select>
+			</div>
+			<div class="input_div">
+				<label>职称：</label>
+				<select id="positional_select" ng-click="positional_click()">
+					<option selected="" value="请选择职称" ng-repeat="item in positional" PttID={{item.PttID}}>{{item.PostTitleTypeName}}</option>
+				</select>
+			</div>
+
+			<div class="input_div">
+				<label>身份：</label>
+				<select id="degree_select" ng-click="degree_click()">
+					<option selected="" value="请选择身份" ng-repeat="item in degree" ItID={{item.ItID}}>{{item.IdentityTypeName}}</option>
+				</select>
+			</div>
+			<div class="input_div">
+				<label>电话：</label>
+				<input type="text" id="tel" ng-model="regtellNumber" style="width:20%;margin-right: 5px;">
+				<span id="telmsgBox" class="woring_msg" style="font-size: 12px;"></span>
+			</div>
+			<div class="input_div">
+				<label>密码：</label>
+				<input type="passWord" id="password" ng-model="regPassword" style="width: 20%;margin-right: 5px;">
+				<span id="emptyPassword" style="width: 80%;color:red;text-align:center;margin: 10px auto;font-size: 12px;">*密码不能为空</span>
+				
+			</div>
+
+			<div class="input_div">
+				<label>确认密码：</label>
+				<input type="password" id="checkpassword" ng-model="againPassword" style="width: 20%;margin-right: 5px;">
+				<span id="emptyPassword2" style="width: 80%;color:red;text-align: center;margin: 10px auto;font-size: 12px;">*确认密码不能为空</span>
+				
+			</div>
+
+			<div id="passwordBox" class="woring_msg" style="font-size: 12px;"></div>
+			<div class="btn_div">
+				<label>&ensp;&ensp;</label>
+				<button class="btn btn_red btn_reg" ng-click="regist()">注册</button>
+			</div>
+			<div id="allMessage" style="color: red;margin-top:20px;font-size:14px;text-align: center;">请填写所有信息</div>
+			
+			<div id="errorMessage" style="display: block;color: red;margin-top:20px;font-size:14px;text-align: center;">{{resultmsg}}</div>
+		</div>
+	</div>
+</div>
+<div class="banner">
+	<div data ui-view></div>
+</div>
+<div class="footer">
+	<p>Copyright <span class="big"> © </span>复旦大学上海医学院机构知识库 网站总浏览量：<span class="font_red">{{visit}}</span></p>
+</div>
+
+<script>
+	//var BaseURL = 'http://47.92.90.65:8087'; //阿里
+	//var BaseURL = 'http://47.92.90.65:8088/zsktest'
+	//var BaseURL = 'http://47.92.90.65:8088/zsktest/Swagger/ui/index'  页面接口
+	var BaseURL = 'http://192.168.199.8:8088/WBSAPI'
+	var downLoadUrl = 'http://192.168.199.8:8555'
+</script>

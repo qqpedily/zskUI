@@ -1,0 +1,141 @@
+<div class="admin_cont">
+	<ul class="bread_crumbs">
+		<li>所在位置：</li>
+		<li>个人工作室 <i class="fa fa-angle-right"></i></li>
+		<li>收藏的主题</li>
+	</ul>
+	<h2>
+		收藏的主题
+	</h2>
+
+	<!--<div class="input_div">
+		<select>
+			<option>按照关注先后顺序排列</option>
+		</select>
+		<label for="">排序规则</label>
+	</div>-->
+	<table>
+		<thead>
+			<tr>
+				<td>主题</td>
+				<td>收藏时间</td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody ng-repeat="item in topicList">
+			<tr>
+				<td>{{item.ThemeName}}</td>
+				<td>{{item.CreateTime | limitTo:10}}</td>
+				<td>
+					<button type="button" class="btn" value="{{item.UUID}}" ng-click="resolve($event,'是否取消？')">取消收藏</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="footer" style="width:100%;"></div>
+<div class="popup add_cont">
+	<div class="mask"></div>
+	<div class="popup_cont normal">
+		<h2><span class="close"><i class="fa fa-times"></i></span> 添加</h2>
+		<div class="join_form inline_form">
+			<div class="input_div">
+				<label>上级：</label>
+				<input class="main_org" name="main_org" type="text" value="复旦大学上海医学院" readonly>
+			</div>
+			<div class="input_div">
+				<label>选择添加项目：</label>
+				<input type="radio" name="org_cat" value="1" checked> 大分支机构
+				<input type="radio" name="org_cat" value="2"> 小分支机构
+				<input type="radio" name="org_cat" value="3"> 科系
+			</div>
+			<div class="input_div">
+				<label>名称：</label>
+				<input type="text" name="org_name">
+				<div class="tips_cont clearfix">
+					<label>&nbsp;</label>
+					<span class="warning"></span>
+				</div>
+			</div>
+			<div class="btn_div">
+				<label>&nbsp;</label>
+				<button class="btn btn_red submit_add">提交</button>
+				<button class="btn btn_gray close">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="popup edit_cont">
+	<div class="mask"></div>
+	<div class="popup_cont normal">
+		<h2><span class="close"><i class="fa fa-times"></i></span> 修改</h2>
+		<div class="join_form inline_form">
+			<div class="input_div">
+				<label>上级：</label>
+				<input class="main_org" name="main_org" type="text" value="复旦大学上海医学院" readonly>
+			</div>
+			<div class="input_div">
+				<label>选择添加项目：</label>
+				<input type="radio" name="org_cat" value="1" checked> 大分支机构
+				<input type="radio" name="org_cat" value="2"> 小分支机构
+				<input type="radio" name="org_cat" value="3"> 科系
+			</div>
+			<div class="input_div">
+				<label>名称：</label>
+				<input type="text" name="org_name">
+				<div class="tips_cont clearfix">
+					<label>&nbsp;</label>
+					<span class="warning"></span>
+				</div>
+			</div>
+			<div class="btn_div">
+				<label>&nbsp;</label>
+				<button class="btn btn_red submit">提交</button>
+				<button class="btn btn_gray close">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function () {
+
+		$(".submit_add").click(function () {
+			var org_name = $("input[name='org_name']").val();
+			var list_html = '<ul class="tab_list clearfix">' +
+				'<li>&nbsp;</li>' +
+				'<li><input type="text" value="' + org_name + '"></li>' +
+				'<li><input type="text" value=""></li>' +
+				'<li>' +
+				' <i class="fa fa-times remove_this"></i> ' +
+				'</li>' +
+				'</ul>';
+			if (org_name != "" && org_name != null) {
+				$(".popup").hide();
+				$(".org_list").append(list_html);
+				$(".remove_this").click(function () {
+					$(this).parent().parent().remove();
+				});
+			} else {
+				$("input[name='org_name']").parent().find(".tips_cont").show().find(".warning").text("请输入名称！")
+				$("input[name='org_name']").focus(function () {
+					$(this).parent().find(".tips_cont").hide();
+				})
+			}
+		});
+		$(".submit").click(function () {
+			$(".edit_cont").hide();
+		});
+		$(".remove_this").click(function () {
+			$(this).parent().parent().remove();
+		});
+	})
+</script>
+<style>
+	.banner .content .admin_cont {
+		width: calc(100%);
+		padding-left: 20px;
+		display: block;
+		vertical-align: top;
+		overflow: hidden;
+	}
+</style>

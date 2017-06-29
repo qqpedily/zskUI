@@ -1,0 +1,321 @@
+<div class="content admin_content">
+	<div class="admin_cont">
+		<ul class="bread_crumbs">
+			<li>所在位置：</li>
+			<li>个人工作室 <i class="fa fa-angle-right"></i></li>
+			<li>已加入的组</li>
+		</ul>
+		<h2> 已加入的组 </h2>
+		<div class="cont">
+			<div class="tabs">
+				<ul class="tab_list">
+					<li class="tab active" id="tab_2">我创建的组</li>
+					<li class="tab" id="tab_1" ng-click="change()">已加入的组</li>
+				</ul>
+				<div class="tab_cont tab_1" style="display: none">
+					<div class="btn btn_red  btn_s" style="float：right;">按照时间先后顺序排列</div>
+					<table class="detailGroup">
+						<thead>
+							<tr>
+								<td>组名称</td>
+								<td>组成员</td>
+								<td id="createTimeTarget">邀请时间</td>
+								<td>是否退出</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in Data">
+								<td ng-click="showDetailInfo(item)" style="cursor: pointer;">{{item.UseGroupName}}</td>
+								<td>{{item.GroupMembersName}}</td>
+								<td>{{item.InvitationTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<td>
+									<button type="button" class="btn btn_red btn_s edit" ng-click="exitGroup(item.UUID,2)">是</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<table id="detailBox" style="display: none;">
+						<thead>
+							<tr>
+								<td><button type="button" class="btn btn_gray btn_s add">查看小组成员</button></td>
+								<td>创建于{{itemInfo.UseGroupCreateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<td>组长</td>
+								<td>王宏伟</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>组名称</td>
+								<td>{{itemInfo.UseGroupName}}</td>
+								<td colspan="2">我是这个组的成员
+									<button type="button" class="btn btn_red btn_s del" ng-click="exitGroup(itemInfo.UUID,2)">退出小组</button>
+								</td>
+							</tr>
+							<tr>
+								<td>组描述</td>
+								<td colspan="3">{{itemInfo.UseGroupDescribe}}</td>
+							</tr>
+						</tbody>
+					</table>
+				<!--	<button type="button" class="btn btn_gray btn_s add" ng-click="createTopic()">创建话题</button></td>
+					<table>
+						<thead>
+
+							<tr>
+								<td>话题</td>
+								<td>回应</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>痱子刚型先天性心脏病患儿术后急性损伤的影响因素研究</td>
+								<td>12</td>
+							</tr>
+							<tr>
+								<td>痱子刚型先天性心脏病患儿术后急性损伤的影响因素研究</td>
+								<td>12</td>
+							</tr>
+							<tr>
+								<td>痱子刚型先天性心脏病患儿术后急性损伤的影响因素研究</td>
+								<td>12</td>
+							</tr>
+							<tr>
+								<td>痱子刚型先天性心脏病患儿术后急性损伤的影响因素研究</td>
+								<td>12</td>
+							</tr>
+						</tbody>
+					</table>
+			-->	</div>
+				<div class="tab_cont tab_2">
+<!--				
+						<button type="button" class="btn btn_red btn_s del" ng-click="alerthh()">创建组</button></a>
+				-->
+				
+				<a href="">
+					<button type="button" class="btn btn_red btn_s del" ng-click="createGop()">创建组</button>
+				</a>			
+
+					<table>
+						<thead>
+							<tr>
+								<td>组名称</td>
+								<td>组成员</td>
+								<td>创建时间</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in Mydata ">
+								<td>{{item.UseGroupName}}</td>
+								<td>{{item.GroupMembersName}}</td>
+								<td>创建于{{item.CreateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+								<td>
+									<button type="button " class="btn btn_red btn_s del " ng-click="delete(item.UseGroupID,'是否删除？')">删除组</button>
+									
+										<button type="button " class="btn btn_gray btn_s edit " ng-click="edit(item.UseGroupID);editGroup()">修改组</button>
+								
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="footer "></div>
+	</div>
+	<div class="popup modify_cont ">
+		<div class="mask "></div>
+		<div class="popup_cont normal ">
+			<h2><span class="close "><i class="fa fa-times "></i></span> 修改字段：<span id="key_name ">版本</span></h2>
+			<div class="join_form inline_form ">
+				<div class="input_div ">
+					<label>字段名称：</label>
+					<input type="text " name="key_name " value="版本 ">
+				</div>
+				<div class="input_div ">
+					<label>原名称：</label> 版本
+				</div>
+				<div class="input_div ">
+					<label>类型：</label>
+					<select name="subject ">
+						<option value=" " selected>下拉列表</option>
+						<option value=" ">文本框</option>
+					</select>
+				</div>
+				<div class="input_div ">
+					<label>默认值：</label>
+					<textarea name=" " rows="5 ">预印本;同行评议接收稿;出版稿;</textarea>
+					<p class="clearfix "><label>&ensp;&ensp;</label>多个值请用"; "号分隔</p>
+				</div>
+				<div class="input_div ">
+					<label>是否必填：</label>
+					<input type="radio " name="is_require " checked> 是
+					<input type="radio " name="is_require "> 否
+				</div>
+				<div class="input_div ">
+					<label>是否多值：</label>
+					<input type="radio " name="is_multi "> 是
+					<input type="radio " name="is_multi " checked> 否
+				</div>
+				<div class="input_div ">
+					<label>是否显示：</label>
+					<input type="radio " name="is_display " checked> 是
+					<input type="radio " name="is_display "> 否
+				</div>
+				<div class="input_div ">
+					<label>英文值显示效果：</label>
+					<select name="subject ">
+						<option value=" " selected>保持原样</option>
+						<option value=" ">不保持原样</option>
+					</select>
+				</div>
+				<div class="input_div ">
+					<label>备注：</label>
+					<textarea name=" " rows="5 "></textarea>
+				</div>
+				<div class="btn_div ">
+					<label>&ensp;&ensp;</label>
+					<button class="btn btn_red submit ">保存</button>
+					<button class="btn btn_gray close ">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--、、、、、、、、、、、、、、、、、、创建话题的代码、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、-->
+	<div class="popup add_cont " style="display: none;">
+		<div class="mask "></div>
+		<div class="popup_cont normal ">
+			<h2><span class="close "><i class="fa fa-times "></i></span> 添加</h2>
+			<div class="join_form inline_form ">
+				<div class="input_div ">
+					<label>上级：</label>
+					<input class="main_org " name="main_org " type="text " value="复旦大学上海医学院 " readonly>
+				</div>
+				<div class="input_div ">
+					<label>选择添加项目：</label>
+					<input type="radio " name="org_cat " value="1 " checked> 大分支机构
+					<input type="radio " name="org_cat " value="2 "> 小分支机构
+					<input type="radio " name="org_cat " value="3 "> 科系
+				</div>
+				<div class="input_div ">
+					<label>名称：</label>
+					<input type="text " name="org_name ">
+					<div class="tips_cont clearfix ">
+						<label>&ensp;&ensp;</label>
+						<span class="warning "></span>
+					</div>
+				</div>
+				<div class="btn_div ">
+					<label>&ensp;&ensp;</label>
+					<button class="btn btn_red submit_add ">提交</button>
+					<button class="btn btn_gray close ">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="popup del_cont ">
+		<div class="mask "></div>
+		<div class="popup_cont normal ">
+			<h2><span class="close "><i class="fa fa-times "></i></span> 修改</h2>
+			<div class="join_form inline_form ">
+				<div class="input_div ">
+					<label>上级1：</label>
+					<input class="main_org " name="main_org " type="text " value="复旦大学上海医学院 " readonly>
+				</div>
+				<div class="input_div ">
+					<label>选择添加项目：</label>
+					<input type="radio " name="org_cat " value="1 " checked> 大分支机构
+					<input type="radio " name="org_cat " value="2 "> 小分支机构
+					<input type="radio " name="org_cat " value="3 "> 科系
+				</div>
+				<div class="input_div ">
+					<label>名称：</label>
+					<input type="text " name="org_name ">
+					<div class="tips_cont clearfix ">
+						<label>&ensp;&ensp;</label>
+						<span class="warning "></span>
+					</div>
+				</div>
+				<div class="btn_div ">
+					<label>&ensp;&ensp;</label>
+					<button class="btn btn_red submit ">提交</button>
+					<button class="btn btn_gray close ">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup edit_cont ">
+		<div class="mask "></div>
+		<div class="popup_cont normal ">
+			<h2><span class="close "><i class="fa fa-times "></i></span>删除</h2>
+			<div class="join_form inline_form ">
+				<div class="input_div ">
+					<p>是确定要删除小二肺炎组吗？</p>
+				</div>
+				<div class="btn_div ">
+					<label>&ensp;&ensp;</label>
+					<button class="btn btn_red submit ">确定</button>
+					<button class="btn btn_gray close ">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		tabs('.tabs');
+	</script>
+
+	<script>
+		$(function () {
+			$(".submit_del ").click(function () {
+				var org_name = $("input[name='org_name' ] ").val();
+				var list_html = '<ul class="tab_list clearfix ">' +
+					'<li>&ensp;&ensp;</li>' +
+					'<li><input type="text " value=" ' + org_name + ' "></li>' +
+					'<li><input type="text " value=" "></li>' +
+					'<li>' +
+					' <i class="fa fa-times remove_this "></i> ' +
+					'</li>' +
+					'</ul>';
+				if (org_name != " " && org_name != null) {
+					$(".popup ").hide();
+					$(".org_list ").append(list_html);
+					$(".remove_this ").click(function () {
+						$(this).parent().parent().remove();
+					});
+				} else {
+					$("input[name='org_name' ] ").parent().find(".tips_cont ").show().find(".warning ").text("请输入名称！ ")
+					$("input[name='org_name' ] ").focus(function () {
+						$(this).parent().find(".tips_cont ").hide();
+					})
+				}
+			});
+			$(".submit ").click(function () {
+				$(".edit_cont ").hide();
+			});
+			$(".remove_this ").click(function () {
+				$(this).parent().parent().remove();
+			});
+		})
+
+		$(".del ").click(function () {
+			var this_html = $("popup del_cont ");
+			$(this).parent().parent().append(this_html);
+			// $(this).parent().parent().append(this_html);
+			// $(this).parent().remove();
+		});
+	</script>
+	<style>
+		.banner .content .admin_cont {
+			width: calc(100%) !important;
+			padding-left: 20px;
+			display: block;
+			vertical-align: top;
+			overflow: hidden;
+		}
+	</style>

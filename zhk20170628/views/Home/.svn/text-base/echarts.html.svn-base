@@ -1,0 +1,19 @@
+﻿<div class="content">
+	<h1 class="main_title clearfix">知识图谱</h1>
+	<div class="cont bg_gray clearfix">
+		<div class="left_cont">
+			<ul class="list">
+				<li>
+					<a href="javascript:;" ng-click="aa();">年度成果院所排名</a>
+				</li>
+			</ul>
+		</div>
+		<!--统计图-->
+		<div>
+			<div class="right_cont" id="main" style="width:650px;height:250px;padding-top:20px;">
+				
+			</div>
+		</div>
+
+	</div>
+</div>

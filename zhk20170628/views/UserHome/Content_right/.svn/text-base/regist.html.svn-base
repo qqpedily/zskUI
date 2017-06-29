@@ -1,0 +1,39 @@
+<!--注册页面-->
+		<div class="popup reg_form" style="display: none;">
+			<div class="mask"></div>
+			<div class="popup_cont normal">
+				<h2><span class="close"><i class="fa fa-times"></i></span> 注册</h2>
+				<div class="join_form inline_form">
+					<div class="input_div"><label>电子邮件：</label><input name="" type="text" value=""></div>
+					<div class="input_div"><label>姓：</label><input name="" type="text" value="" class="inline_input" placeholder="中文"><input name="" type="text" value="" class="inline_input" placeholder="拼音"></div>
+					<div class="input_div"><label>名：</label> <input name="" type="text" value="" class="inline_input" placeholder="中文"><input name="" type="text" value="" class="inline_input" placeholder="拼音"></div>
+					<div class="input_div"><label>&nbsp;</label>
+						<div class="font_red">多汉字名的拼音中间用空格分开</div>
+					</div>
+					<div class="input_div"><label>单位：</label>
+						<select>
+							<option selected="" value="请选择单位">请选择单位</option>
+						</select>
+					</div>
+					<div class="input_div"><label>部门：</label>
+						<select>
+							<option selected="" value="请选择部门">请选择部门</option>
+						</select>
+					</div>
+					<div class="input_div"><label>职称：</label>
+						<select>
+							<option selected="" value="请选择职称">请选择职称</option>
+						</select>
+					</div>
+					<div class="input_div"><label>身份：</label>
+						<select>
+							<option selected="" value="请选择身份">请选择身份</option>
+						</select>
+					</div>
+					<div class="input_div"><label>电话：</label><input type="text" name=""></div>
+					<div class="input_div"><label>密码：</label><input type="password" name=""></div>
+					<div class="input_div"><label>再输入一遍：</label><input type="password" name=""></div>
+					<div class="btn_div"><label>&nbsp;</label><button class="btn btn_red btn_reg">注册</button></div>
+				</div>
+			</div>
+		</div>

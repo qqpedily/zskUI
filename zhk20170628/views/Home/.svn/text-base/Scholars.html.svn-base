@@ -1,0 +1,101 @@
+<div class="content admin_content" data-value="{{flag1}}{{flag2}}{{flag3}}">
+	<div class="admin_nav" style="width:165px;">
+		<h2 style="color:#a41b22">所有院系</h2>
+		<ul class="l_dmain_list" id="all_Medicine_school">
+			<li class="l_dmain_list_li" ng-repeat="item in aa track by $index" data-value="{{item.CID}}" ng-click="showOrhideParent($event)">
+				<a href="javascript:void(0);">{{item.CollegeName}}<i></i></a>
+				<ul>
+					<li ng-repeat="itemChild in son track by $index" data-value="{{itemChild.CID}}" ng-click="showOrhideSon($event)">{{itemChild.CollegeName}}</li>
+				</ul>
+				<div style="clear:both;"></div>
+			</li>
+		</ul>
+	</div>
+	<div class="admin_cont">
+		<div class="l_The_query">
+			<span>按职称：</span>
+			<select id="postOccpu">
+				<option></option>
+				<option value="{{item.PttID}}" ng-repeat="item in getOccupation">{{item.PostTitleTypeName}}</option>
+			</select>
+			<span style="margin-left:40px;">按姓名：</span>
+			<input type="text" id="require_name" ng-keyup="send_require1($event)" />
+			<button type="button" class="btn btn_red" style="margin-left:40px;" ng-click="send_require($event)">查询</button>
+		</div>
+		<div style="clear:both;"></div>
+		<dl class="l_The_first_letter" id="search_letter">
+			<dt>首字母</dt>
+			<dd>A</dd>
+			<dd>B</dd>
+			<dd>C</dd>
+			<dd>D</dd>
+			<dd>E</dd>
+			<dd>F</dd>
+			<dd>G</dd>
+			<dd>H</dd>
+			<dd>I</dd>
+			<dd>J</dd>
+			<dd>K</dd>
+			<dd>L</dd>
+			<dd>M</dd>
+			<dd>N</dd>
+			<dd>O</dd>
+			<dd>P</dd>
+			<dd>Q</dd>
+			<dd>R</dd>
+			<dd>S</dd>
+			<dd>T</dd>
+			<dd>U</dd>
+			<dd>V</dd>
+			<dd>W</dd>
+			<dd>X</dd>
+			<dd>Y</dd>
+			<dd>Z</dd>
+		</dl>
+
+		<div style="clear:both;"></div>
+		<ul class="item_list item_img_list clearfix" style="width:105%;">
+			<li ng-repeat="item in FirstLetter.Data track by $index" ng-mouseenter="zhicd(item.Username)" ng-mouseleave="zhicl()" ng-click="sendMes($event)" data-value="{{item.UUID}}" data-name='{{item.Username}}' data-img='{{downLoadUrl}}/{{item.UploadIMG}}'  data-img2='{{downLoadUrl}}/user_img/{{item.UploadIMG}}' >
+				<span class="item_cover" style="background-repeat: no-repeat center;background-image:url({{downLoadUrl}}/{{item.UploadIMG}}),url({{downLoadUrl}}/user_img/{{item.UploadIMG}}); background-size:cover"></span>
+				<div class="item_cont"  >
+					<div class="info">
+						<span>科室：{{item.CollegeName | zhic}}</span>
+						<div style="clear:both;"></div>
+						<span>职称：{{item.PostTitleTypeName | zhic}} </span>  <!--{{item.PostTitleTypeName | zhic}}-->
+						<div style="clear:both;"></div>
+						<span>论文量：{{lwCount}}</span>
+					</div>
+					<div class="foot no_border">
+						<span class="font_red" style="color:#333!important;margin-left:5px;">姓名：{{item.Username}}</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div style="margin:40px 0;">
+				<ul class="page clearfix pS0" maxshowpageitem="5" pagelistcount="20" id="pageSize"></ul>
+			</div>
+	</div>
+</div>
+
+<style>
+	.l_The_query input {
+		width: 150px;
+		height: 27px;
+		border: 1px solid #ddd;
+		float: left;
+		text-indent: 5px;
+	}
+	
+	.banner .content .admin_nav,
+	.banner .content .user_nav {
+		width: 195px;
+	}
+	
+	.l_The_first_letter dd {
+		cursor: pointer;
+	}
+	
+	.l_The_first_letter dd:hover {
+		background: #a41b21;
+	}
+</style>

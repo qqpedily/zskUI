@@ -1,0 +1,409 @@
+﻿﻿<style>
+	#ulist_button{
+
+	}
+	#ulist_button span{
+		display: inline-block;
+		border: 1px solid rgba(203,203,203,1);
+		padding: 5px 10px;
+		margin-left: 10px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		background: #FDFDFE;
+		cursor: pointer;
+	}
+	#ulist_button span.cur{
+		background: rgba(203,203,203,0.7);
+	}
+	#ulist_button span:hover{
+		background: rgba(203,203,203,0.3);
+	}
+</style>
+<div class="admin_cont">
+	<h2>
+                作品提交页面
+           </h2>
+	<div class="tabs">
+		<ul class="tab_list">
+			<li class="tab active" id="tab_1">作品提交</li>
+			<li class="tab" id="tab_2">个人数据提交</li>
+		</ul>
+		<div id="ulist_button">
+			<span ng-repeat="magazine in magazineType" ng-click="magazineTypeChange($index)">{{magazine.ContentType}}</span>
+		</div>
+		<div class="tab_cont tab_1">
+			<div class="join_form inline_form" ng-repeat=" (key,productitem) in productData">
+				<!--当FieldType=1的时候显示输入框-->
+				<div class="input_div" ng-if="productitem.IsShow =='0' && productitem.FieldType == '1'">
+					<label ng-if="productitem.NeedFill == '1'">{{productitem.FieldName}}</label>
+					<label ng-if="productitem.NeedFill == '5'" style="color: transparent;">{{productitem.FieldName}}</label>
+					<label ng-if="productitem.NeedFill == '0'"><em>*</em>{{productitem.FieldName}}</label>
+					<div ng-if="productitem.MoreValue == '0'">
+						<input type="text" class="inline_input" style="width: 464px; " ng-model="productitem.DefaultText">
+						<!--<button type="button" class="btn btn_gray btn_s" style="margin-left: -5px;"><i class="fa fa-arrow-up btn_up"></i></button>-->
+						<!--<button type="button" class="btn btn_gray btn_s" style="margin-left: -8px;"><i class="fa fa-arrow-down btn_down"></i></button>-->
+						<button type="button" class="btn btn_gray btn_s" style="margin-left: 5px;" ng-click="productDataAdd($index,true)"> + </button>
+						<button type="button" class="btn btn_gray btn_s" style="margin-left: 5px;" ng-if="productitem.NeedFill == '5'" ng-click="productDataAdd($index,false)"> - </button>
+						<div class="input_div" ng-if="productitem.NeedFill != '5'">
+							<label>&nbsp;</label>
+							<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+						</div>
+					</div>
+					<div ng-if="productitem.MoreValue == '1'">
+						<input type="text" ng-model="productitem.DefaultText" class="inline_input" style="width: 585px;">
+					</div>
+				</div>
+				<!--当FieldType=0的时候显示下拉框-->
+				<div class="input_div" id='slss' ng-click="slsbb(2,'slss')" 
+					ng-if="productitem.IsShow =='0' && productitem.FieldType == '0'">
+					<label ng-if="productitem.NeedFill == '1'">{{productitem.FieldName}}</label>
+					<label ng-if="productitem.NeedFill == '0'"><em>*</em>{{productitem.FieldName}}</label>
+						<select name="dc_citation_indexed" ng-model="productitem.DefaultValue" ng-init="productitem.DefaultValue = '1'">
+							<option ng-repeat=" (key,optionItem) in productitem.DefaultText" value="{{key+1}}" 
+								ng-selected="productitem.DefaultValue=='{{key+1}}'">{{optionItem}}</option>
+							<!--<option ng-repeat="key in productitem.DefaultValue" value="{{key}}">{{DefaultText[key-1]}}</option>-->
+						</select>
+				</div>
+				<!--当FieldType=2的时候显示文本框-->
+				<div class="input_div" ng-if="productitem.IsShow =='0' && productitem.FieldType == '2'">
+					<label ng-if="productitem.NeedFill == '1'">{{productitem.FieldName}}</label>
+					<label ng-if="productitem.NeedFill == '0'"><em>*</em>{{productitem.FieldName}}</label>
+					<textarea ng-model="productitem.DefaultText" class="textareaAll"></textarea>
+				</div>
+			</div>
+			<div class="input_div" style="margin-left: 135px;margin-top: 20px;">
+				<input type="file" id="ulistUploadAttachment" name="attachment" multiple="multiple" />
+    			<!--<input type="button" style="width:60px;" onclick="ulistAttachmentSend()" value="上传" />-->
+			</div>
+			<div class="input_btn" style="margin-left: 230px; margin-top: 20px;">
+				<label>&nbsp;</label>
+				<button type="button" class="btn btn_red" ng-click="productDataSave('确认保存？')">保存</button>
+				<!--<button type="button" class="btn btn_red" ng-click="productDataSave('确认保存？')">保存</button>-->
+			</div>
+		</div>		
+	</div>
+</div>
+</div>
+<script>
+	tabs('.tabs');
+	function ulistAttachmentSend(){
+		var ulistUserID = document.getElementById('ulistUserID');
+		var fileObj = document.getElementById("ulistUploadAttachment").files[0];// 获取文件对象
+		var fileObj1 = document.getElementById("ulistUploadAttachment").files[1];
+		var fileObj2 = document.getElementById("ulistUploadAttachment").files[2];
+		var fileObj3 = document.getElementById("ulistUploadAttachment").files[3];
+		var fileObj4 = document.getElementById("ulistUploadAttachment").files[4];
+		var fileObj5 = document.getElementById("ulistUploadAttachment").files[5];
+//      var FileController = BaseURL+"/user/saveuserfile?useruuid="+ulistUserID.innerText+"&localpath=";
+        var FileController = BaseURL+"/User/SavaFiles";
+        // FormData 对象
+        var form = new FormData();
+        console.log(form);
+        form.append("ulistUploadAttachment",fileObj);// 可以增加表单数据
+        form.append("ulistUploadAttachment",fileObj1);// 文件对象
+        form.append("ulistUploadAttachment",fileObj2);
+        form.append("ulistUploadAttachment",fileObj3);
+        form.append("ulistUploadAttachment",fileObj4);
+        form.append("ulistUploadAttachment",fileObj5);
+        // XMLHttpRequest 对象
+        console.log(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", FileController, true);
+        xhr.send(form);
+	}
+
+</script>
+
+<!--<div class="join_form inline_form" >
+	<div class="input_div">
+		<label>内容类型:</label>
+		<select name="submit_type" id="submit_type" ng-click="nrlx('submit_type')">
+			yaoxn201411 <option value="">请选择内容类型</option>
+			<option value="">请选择内容类型</option>
+			<option value="11"> 预印本</option>
+
+			<option value="13"> 期刊论文</option>
+
+			<option value="14"> 学位论文</option>
+
+			<option value="15"> 会议论文</option>
+
+			<option value="16"> 专著</option>
+
+			<option value="17"> 专著章节/文集论文</option>
+
+			<option value="18"> 文集</option>
+
+			<option value="19"> 研究报告</option>
+
+			<option value="20"> 演示报告</option>
+
+			<option value="21"> 成果</option>
+
+			<option value="22"> 专利</option>
+
+			<option value="23"> 其他</option>
+
+			<option value="24"> 会议录</option>
+
+			<option value="25"> 图像</option>
+
+			<option value="26"> 数据集</option>
+
+			<option value="27"> 影音</option>
+
+			<option value="28"> 项目</option>
+
+			<option value="29"> 实验</option>
+
+		</select>
+	</div>
+	<div class="input_div">
+					<label>目标专题：</label>
+					<select>
+						<option>请选择</option>
+						<button type="button" class="btn btn_gray btn_s">下一步</button>
+					</select>
+					<button type="button" class="btn btn_gray btn_s step_next">下一步</button>
+				</div>
+	<div class="input_div">
+		<label>版本:</label>
+		<select ng-model="data[8].DefaultValue" ng-click="slsbb(8,'slsbb')" id="slsbb">
+			<option>请选择</option>
+			<option value="1">预印本</option>
+			<option value="2">同行评议接收稿</option>
+			<option value="3">出版稿</option>
+		</select>
+	</div>
+	<div class="input_div">
+		<label>学科主题：</label>
+		<input type="text" name="subject_name" class="inline_input" ng-model="data[21].DefaultText">
+		<button type="button" class="btn btn_gray btn_s select_topic">选择</button>
+	</div>
+	<div class="input_div">
+		<label><em>*</em>题名：</label>
+		<input type="text" name="title_name" ng-model="data[22].DefaultText">
+	</div>
+	<div class="input_div">
+		<label><em>*</em>作者：</label>
+		<input type="text" ng-model="data[18].DefaultText" class="inline_input" style="width: 585px;">
+	</div>
+
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<input type="text" class="inline_input" placeholder="单位名称">
+		<span>ORCID：</span>
+		<input type="text" class="inline_input" value="0000-0001-9257-4594">
+		<button type="button" class="btn btn_gray btn_s">查询/注册ORCID</button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label style="padding-bottom:50px;">&nbsp;</label>
+		<p class="tip">
+			注意：（1）英文作品的作者信息请按照"Lastname,Firstname"（中间以英文逗号和空格分隔）形式标注，如"Wang,Haiying"，"Gates,Bill"。（2）请使用"+/—"进行多作者的顺序添加或删除。（3）"单位"中填写下面"作者单位"对应的序号，多值间用英文逗号分隔，如"1，2"。
+		</p>
+	</div>
+	<div class="input_div">
+		<label>作者单位：</label>
+		<span> </span>
+		<input type="text" class="inline_input" style="width:70%;" ng-model="data[15].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label><em>*</em>通讯作者：</label>
+		<input type="text" style="width: 150px;">
+	</div>
+	<div class="input_div">
+		<label>关键词：</label>
+		<input type="text" class="inline_input" style="width: 464px;" ng-model="data[19].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-up btn_up"></i></button>
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-down btn_down"></i></button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label><em>*</em>作品的所属部门：</label>
+		<input type="text" style="width: 500px;" ng-model="data[6].DefaultText">
+	</div>
+	<div class="input_div">
+		<label><em>*</em>发布日期：</label>
+		<input type="text" class="inline_input" placeholder="格式：2017-04-01" ng-model="data[12].DefaultText">
+	</div>
+
+	<div class="input_div">
+		<label><em>*</em>DOI：</label>
+		<input type="text" ng-model="data[3].DefaultText">
+	</div>
+	<div class="input_div">
+		<label><em>*</em>预印本编号：</label>
+		<input type="text" style="width: 10px;" placeholder="卷" ng-model="data[10].DefaultText">
+		<input type="text" style="width: 130px;margin-left: 10px;" placeholder="期" ng-model="data[14].DefaultText">
+		<input type="text" style="width: 130px;margin-left: 10px;" placeholder="页" ng-model="data[4].DefaultText">
+
+	</div>
+	<div class="input_div" ng-model="data[2].DefaultText" id='slss' ng-click="slsbb(2,'slss')">
+		<label>收录类别</label>
+		<select name="dc_citation_indexed">
+			<option value="1">SCI</option>
+			<option value="2">SSCI</option>
+			<option value="3">CPCI</option>
+			<option value="4">EI</option>
+			<option value="5">ISSHP</option>
+			<option value="6">AHCI</option>
+			<option value="7">CSCD</option>
+			<option value="8">CSSCI</option>
+			<option value="9">SCIE</option>
+			<option value="10">ISTP</option>
+			<option value="11">IC</option>
+			<option value="12">CCR</option>
+			<option value="13">BSCI</option>
+			<option value="14">中国科技核心期刊</option>
+			<option value="15">中文核心期刊</option>
+			<option value="16">其他</option>
+		</select>
+	</div>
+
+	<div class="input_div">
+		<label>文章类型：</label>
+		<input type="text" ng-model="data[17].DefaultText">
+	</div>
+
+	<div class="input_div" id="slshz" ng-model="data[23].DefaultText" ng-click="slsbb(23,'slshz')">
+		<label>合作性质：</label>
+		<select>
+			<option value="1">国内</option>
+			<option value="2">国外</option>
+			<option value="3">其它</option>
+		</select>
+	</div>
+	<div class="input_div">
+		<label>项目归属：</label>
+		<input type="text" ng-model="data[9].DefaultText">
+	</div>
+
+	<div class="input_div">
+		<label>类目[WOS]：</label>
+		<input type="text" class="inline_input" style="width: 464px;" ng-model="data[5].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-up btn_up"></i></button>
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-down btn_down"></i></button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label>产权排名：</label>
+		<input type="text" ng-model="data[24].DefaultText">
+	</div>
+	<div class="input_div">
+		<label>研究领域[WOS]：</label>
+		<input type="text" class="inline_input" style="width: 464px;" ng-model="data[16].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-up btn_up"></i></button>
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-down btn_down"></i></button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label>关键词[WOS]：</label>
+		<input type="text" class="inline_input" style="width: 464px; " ng-model="data[26].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-up btn_up"></i></button>
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-down btn_down"></i></button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label>摘要：</label>
+		<textarea ng-model="data[1].DefaultText" class="textareaAll"></textarea>
+	</div>
+	<div class="input_div">
+		<label>英文摘要：</label>
+		<textarea ng-model="data[7].DefaultText" class="textareaAll"></textarea>
+	</div>
+	<div class="input_div" ng-model="data[13].DefaultText" id='slslz'>
+		<label>语种：</label>
+		<select ng-click="slsbb(13,'slslz')">
+			<option value="1">中文</option>
+			<option value="2">英语</option>
+			<option value="3">德语</option>
+			<option value="4">法语</option>
+			<option value="5">日语</option>
+			<option value="6">俄语</option>
+			<option value="7">其他</option>
+		</select>
+	</div>
+	<div class="input_div">
+		<label>所属项目编号：</label>
+		<input type="text" class="inline_input" style="width: 464px;" ng-model="data[11].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-up btn_up"></i></button>
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-down btn_down"></i></button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label>项目资助者：</label>
+		<input type="text" class="inline_input" style="width: 464px;" ng-model="data[0].DefaultText">
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-up btn_up"></i></button>
+		<button type="button" class="btn btn_gray btn_s"><i class="fa fa-arrow-down btn_down"></i></button>
+		<button type="button" class="btn btn_gray btn_s"> + </button>
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">提示：添加多个关键词请点击"+"，删除请点击"-"</p>
+	</div>
+	<div class="input_div">
+		<label>原文出处：</label>
+		<input type="text" ng-model="data[25].DefaultText">
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">访问或获取资源原始出处的链接</p>
+	</div>
+	<div class="input_div">
+		<label>WOS记录号：</label>
+		<input type="text" ng-model="data[20].DefaultText">
+	</div>
+	<div class="input_div">
+		<label>&nbsp;</label>
+		<p class="tip">作品在WOS中的记录号</p>
+	</div>
+	<div class="join_form inline_form">
+		<div class="input_div">
+			<label>文件列表：</label>
+			<textarea name="" rows="5" ng-model="data.fileUp">{{data.fileUp}}</textarea>
+		</div>
+		<input type="file" id="file" name="img1" style="margin-left: 350px;" />
+		<div class="input_div">
+                        <label>&nbsp;</label>
+                        <p class="tip">0个文件上传完成</p>
+                        <input type="file" style="display:none" id="upload_file">
+                    </div>
+                    <div class="input_btn">
+                        <label>&nbsp;</label>
+                        <button  type="button" class="btn btn_red btn_s btn_upload">上传</button>
+		<div id="upload" style="float: left;"></div>
+                        <button type="button" class="btn btn_gray btn_s">终止上传</button>
+		<input type="button" onclick="UpladFile()" value="上传" />
+	</div>
+	<div class="input_btn" style="margin:20px 0 0 230px;">
+					<label>&nbsp;</label>
+					<button type="button" class="btn btn_red" ng-click="ng_Savewx()">保存</button>
+	</div>
+</div>	
+-->

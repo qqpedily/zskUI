@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../../../css/css/global.css" rel="stylesheet" type="text/css">
+		<script src='../../../lib/jquery/dist/jquery.min.js'></script>
+		<script src="../../../controllers/UserHome/"></script>
+
+	</head>
+
+	<body>
+
+		<!--登录页面-->
+		<div class="popup login_form" style="display: block;">
+			<div class="mask"></div>
+			<div class="popup_cont  normal">
+				<h2><span class="close"><i class="fa fa-times"></i></span> 登录</h2>
+				<div class="join_form">
+					<div class="input_div"><label>用户名</label><input type="text" class="ng-pristine ng-untouched ng-valid ng-empty" id="username" ng-model="userName" value="zhwwang@fudan.edu.cn"></div>
+					<div class="input_div"><label>密码</label><input type="password" class="ng-pristine ng-untouched ng-valid ng-empty" id="password" ng-model="passWord" value="123"></div>
+					<div class="input_btn"><label>&nbsp;</label><button type="button" class="btn btn_red btn_login" id="Btn_Login" ng-click="login()" onclick="hh()">					
+						11111					
+				</button></div>
+				</div>
+			</div>
+
+	</body>
+
+</html>
+
+<!--<script>
+	//点击登录和注册后的
+       $(".btn_login").click(function () {
+            $(".login_form").hide();
+//          window.localStorage.setItem("isLogin","1");
+//          window.location.href = './index.html';
+        });
+       /* $(".btn_reg").click(function () {
+            $(".reg_form").hide();
+            window.localStorage.setItem("isLogin","1");
+            window.location.href = './index.html';
+        });*/
+</script>
+-->

@@ -1,0 +1,127 @@
+<div class="admin_cont">
+	<ul class="bread_crumbs">
+		<li>所在位置：</li>
+		<li>个人工作室 <i class="fa fa-angle-right"></i></li>
+		<li>个人作品统计</li>
+	</ul>
+	<h2>
+        个人统计
+   </h2>
+	<div class="filter_cont join_form inline_form">
+		<div class="input_div">
+			<div class="l_statistical_div">
+				<input type="checkbox" style="margin-top:-1px;">
+				<label>发表时间</label>
+				<input type="text" id="publishTimeStart" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy'})" class="Wdate" style=" width:100px;border-radius:5px;" />
+				<span>年&nbsp;&nbsp;-</span>
+				<input type="text" id="publishTimeEnd" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy'})" class="Wdate" style=" width:100px;border-radius:5px ;"/>年
+			</div>
+			<div class="l_statistical_div">
+				<input type="checkbox" style="margin-top:-1px;">
+				<label>提交时间</label>
+				<input type="text" id="submitTimeStartY"  onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy'})" class="Wdate" style=" width:100px;border-radius:5px ;"/>
+				<span>年</span>
+				<input type="text" id="submitTimeStartM"  onfocus="WdatePicker({lang:'zh-cn',dateFmt:'MM'})" class="Wdate" style=" width:100px;border-radius:5px ;"/>
+				<span>月&nbsp;&nbsp;-</span>
+			</div>
+			<div class="l_statistical_div">
+				<input type="text" id="submitTimeEndY"  onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy'})" class="Wdate" style=" width:100px;border-radius:5px ;"/>
+				<span>年</span>
+				<input type="text" id="submitTimeEndM"  onfocus="WdatePicker({lang:'zh-cn',dateFmt:'MM'})" class="Wdate" style=" width:100px;border-radius:5px ;"/>
+				<span>月</span>
+			</div>
+			<div class="l_statistical_div">
+				<label>内容类型</label>
+				<input type="checkbox" />
+				<span>期刊论文</span>
+				<input type="checkbox" />
+				<span>会议论文</span>
+				<input type="checkbox" />
+				<span>学位论文</span>
+			</div>
+			<label>作者姓名</label>
+			<input type="text" name="" size="16" style="width:130px;">
+			<input type="radio"> <span>精确匹配</span>
+		</div>
+		<div class="input_div">
+			<label>列数据集</label>
+			<select>
+				<option value="收录类别">收录类别</option>
+				<option value="单位">单位</option>
+				<option value="部门">部门</option>
+			</select>
+		</div>
+		<div class="input_div">
+			<label>行数据集</label>
+			<select>
+				<option value="发表时间">发表时间</option>
+				<option value="提交时间">提交时间</option>
+				<option value="收录类别">收录类别</option>
+				<option value="单位">单位</option>
+				<option value="部门">部门</option>
+				<option value="职称">职称</option>
+				<option value="身份">身份</option>
+			</select>
+		</div>
+		<div class="input_div">
+			<label>统计图类型:</label>
+			<select>
+				<option value="柱状图">柱状图</option>
+				<option value="饼图">饼图</option>
+				<option value="线形图">线形图</option>
+				<option value="叠加柱状图">叠加柱状图</option>
+				<option value="条形图">条形图</option>
+				<option value="条形图">条形图</option>
+			</select>
+		</div>
+		<div class="input_btn">
+			<button type="button" class="btn bnt_gray" ng-click="getResult()">获取统计结果</button>
+		</div>
+	</div>
+	本次统计完成
+	<h2>
+        统计结果列表
+    </h2>
+	<div class="tongjibiao">
+		<table>
+			<thead>
+				<tr>
+					<td>数据集</td>
+					<td>期刊论文</td>
+					<td>会议论文</td>
+					<td>学位论文</td>
+					<td>总计</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>总计</td>
+					<td>11</td>
+					<td>33</td>
+					<td>36</td>
+					<td>80</td>
+				</tr>
+				<tr>
+					<td>2017</td>
+					<td>11</td>
+					<td>33</td>
+					<td>36</td>
+					<td>80</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<h2>
+        统计结果图
+    </h2>
+	<!--统计图-->
+	<div class="right_cont" id="main" style="width: 600px;height:400px;">
+
+	</div>
+
+</div>
+<style>
+	.l_statistical_div input {
+		width: 12px;
+	}
+</style>

@@ -1,0 +1,1 @@
+@mixin font_family(){font-family:'Lantinghei SC','hiragino sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;}

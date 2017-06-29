@@ -1,0 +1,129 @@
+<div class="admin_cont">
+	<ul class="bread_crumbs">
+		<li>所在位置：</li>
+		<li>个人工作室 <i class="fa fa-angle-right"></i></li>
+		<li>创建组</li>
+	</ul>
+	<h2>创建组</h2>
+	<div class="cont">
+		<div class="tab_cont tab_1">
+			<div class="input_div">
+				<label>组&ensp;&ensp;名&ensp;&ensp;称&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label>
+				<input type="text" name="" size="20" style="width:300px;margin: 2px 0;" ng-model="groupName"></br></.br>
+				<label>组&ensp;&ensp;描&ensp;&ensp;述&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label>
+				<input type="text" name="" size="20" style="width:300px;margin: 2px 0;" ng-model="groupDescribing">
+				<div class="input_div">
+					<label>组&ensp;&ensp;成&ensp;&ensp;员&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label>
+					<input type="text" name="" size="20" style="width:300px;margin: 2px 0;" ng-model="UserName">
+					<button type="button" class="btn btn_gray btn_s find" ng-click="search()"><i class="fa fa-arrow-left"></i> 查找</button>
+				</div>
+				<div class="select_cont">
+					<div class="select_input">
+						<h3>用户列表</h3>
+						<select name="ready_words" id="aSelect" multiple="multiple" >
+							<option value={{item.UUID}} ng-repeat="item in Data">{{item.UserName}}</option>
+						</select>
+					</div>
+					<div class="select_input">
+						<button type="button" class="btn btn_red btn_s add" ng-click="get()">添加 <i class="fa fa-arrow-right"></i></button>
+						<button type="button" class="btn btn_red btn_s del" ng-click="remove()"><i class="fa fa-arrow-left"></i> 删除</button>
+					</div>
+					<div class="select_input">
+						<h3>已选择用户</h3>
+						<select name="has_words" id="bSelect" multiple="multiple" ng-model="rightSelect">
+
+						</select>
+					</div>
+					<div class="select_input">
+						<button type="button" class="btn btn_red btn_s up"><i class="fa fa-arrow-up"></i></button>
+						<button type="button" class="btn btn_red btn_s down"><i class="fa fa-arrow-down"></i></button>
+					</div>
+					<div class="foot" style="display:table-row;padding:20px;line-height:30px;height:30px;">
+						
+								<button type="button" class="btn btn_red btn_s save" ng-click="save(); tiaozhuan()">保存修改</button>
+						
+						<p class="font_red">注：按住"ctrl"或"shift"键进行多选</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<p>Copyright <span class="big"> © </span>复旦大学上海医学院机构知识库 网站总浏览量：<span class="font_red">5490345</span></p>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	tabs('.tabs');
+</script>
+
+<script type="text/javascript">
+	      $(document).ready(function () {
+	$("#tab_2").click(function() {
+		location.href = "/Template/TemplateFieldEdit/" + "0cb240c4-2f08-497a-82f7-d36315c494f7";
+	});
+
+	// TODO - implement tab 3 and 4
+
+	$("#tab_3").click(function () {
+			
+	});
+
+	$("#tab_4").click(function () {
+
+	});
+
+
+	$("#tab_5").click(function() {
+		location.href = "/Template/FullTextPermissionEdit/" + "0cb240c4-2f08-497a-82f7-d36315c494f7";
+	});
+
+	$(".add").click(function() {
+		var html = [];
+		$("#aSelect :selected").each(function(index,item) {
+			html = '<option value="' + $(item).val() + '">' + $(item).text() + '</option>';
+			$("#bSelect").append(html);
+		});
+		$("#aSelect :selected").remove();
+		return false;
+	});
+	$(".del").click(function() {
+		var html = [];
+		$("#bSelect :selected").each(function() {
+			html = '<option value="' + $(this).val() + '">' + $(this).text() + '</option>';
+			$("#aSelect").prepend(html);
+		});
+		$("#bSelect :selected").remove();
+		return false;
+	});
+	$(".up").click(function() {
+		var op = $('#bSelect option:selected');
+		if(op.length) {
+			if($(this).hasClass("up")) {
+				op.first().prev().before(op);
+			}
+		}
+	});
+	$(".down").click(function() {
+		var op = $('#bSelect option:selected');
+		if(op.length) {
+			if($(this).hasClass("down")) {
+				op.last().next().after(op);
+			}
+		}
+	});
+
+	$("#btn_save_meta_data").click(function() {
+
+	var strMetaDataIDs = '';
+
+	$("#bSelect option").each(function() {
+		strMetaDataIDs += $(this).val() + ',';
+	});
+	$("#input_meta_data_ids").val(strMetaDataIDs);
+
+	$("#form_meta_data_ids").submit();
+	});
+	})
+</script>

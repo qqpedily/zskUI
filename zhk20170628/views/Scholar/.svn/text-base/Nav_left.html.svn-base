@@ -1,0 +1,117 @@
+﻿<div class="content-main-right pull-left data-ui-view" style="padding:0;width:100%; display: none;">
+
+</div>
+
+<div>
+	<div class="c_left">
+		<article>
+			<div class="content admin_content">
+				<div class="admin_nav">
+					<div class="search">
+						<p>
+							<div class="input_div">
+								<div class="select">
+									在结果中搜索
+									<div class="btn btn-info" ng-click="ngClick()">
+								        <span>列表</span>
+								    </div>
+								</div>
+
+								<div class="s_btn">
+									<input type="text" name="search" class="input" style="width:80%" />
+									<i class="fa fa-search"></i></div>
+							</div>
+						</p>
+					</div>
+					<div class="logo"></div>
+					<h2 style="color:#a41b22">内容类型</h2>
+					<ul class="l_dmain_list">
+						<li><input type="checkbox" id="" name="">预印本[2]</li>
+						<li><input type="checkbox" id="" name="">期刊论文[2]</li>
+						<li><input type="checkbox" id="" name="">学位文[26]</li>
+						<li><input type="checkbox" id="" name="">会议论文[12]</li>
+						<li><input type="checkbox" id="" name="">专著[2]</li>
+						<li><input type="checkbox" id="" name="">文集[2]</li>
+						<li><input type="checkbox" id="" name="">研究报告[2]</li>
+						<li><input type="checkbox" id="" name="">演示报告[2]</li>
+						<li><input type="checkbox" id="" name="">成果[2]</li>
+						<li><input type="checkbox" id="" name="">文集论文[2]</li>
+						<li> <button name="submit" type="button" class="btn btn_red">精炼</button>more...</li>
+					</ul>
+					<h2 style="color:#a41b22">发表日期 </h2>
+					<ul class="l_dmain_list">
+						<li><input type="checkbox" id="" name="">2017[12]</li>
+						<li><input type="checkbox" id="" name="">2016[300]</li>
+						<li><input type="checkbox" id="" name="">2015[2]</li>
+						<li><input type="checkbox" id="" name="">2014[12]</li>
+						<li><input type="checkbox" id="" name="">2013[32]</li>
+						<li><input type="checkbox" id="" name="">2012[22]</li>
+						<li><input type="checkbox" id="" name="">2011[14]</li>
+						<li><input type="checkbox" id="" name="">2010[12]</li>
+						<li><input type="checkbox" id="" name="">2009[11]</li>
+						<li><input type="checkbox" id="" name="">2008[14]</li>
+						<li><input type="checkbox" id="" name="">2007[22]</li>
+						<li><input type="checkbox" id="" name="">2006[34]</li>
+						<li> <button name="submit" type="button" class="btn btn_red">精炼</button>more...</li>
+
+					</ul>
+					<h2 style="color:#a41b22">语言</h2>
+					<ul class="l_dmain_list">
+						<li><input type="checkbox" id="" name="">中文[34]</li>
+						<li><input type="checkbox" id="" name="">英语[34]</li>
+						<li><input type="checkbox" id="" name="">日语[34]</li>
+						<li><input type="checkbox" id="" name="">其他[34]</li>
+						<li> <button name="submit" type="button" class="btn btn_red">精炼</button>more...</li>
+					</ul>
+					<h2 style="color:#a41b22">收录类型</h2>
+					<ul class="l_dmain_list">
+						<li><input type="checkbox" id="" name="">SCI[34]</li>
+						<li><input type="checkbox" id="" name="">CPCI-S[34]</li>
+						<li><input type="checkbox" id="" name="">SSCI[34]</li>
+						<li><input type="checkbox" id="" name="">EI[34]</li>
+						<li><input type="checkbox" id="" name="">CSCD[34]</li>
+						<li><input type="checkbox" id="" name="">CSSCI[34]</li>
+						<li><input type="checkbox" id="" name="">ESI高被引论文[34]</li>
+						<li> <button name="submit" type="button" class="btn btn_red">精炼</button>more...</li>
+					</ul>
+					<h2 style="color:#a41b22">全文</h2>
+					<ul class="l_dmain_list">
+						<li><input type="radio" id="" name="">无[157888]</li>
+						<li><input type="radio" id="" name="">有[6666]</li>
+					</ul>
+
+				</div>
+			</div>
+		</article>
+	</div>
+	<div class="c_right">
+		<aside>
+			<div class="cr_cw">
+				<div data-ui-view></div>
+			</div>
+		</aside>
+	</div>
+</div>
+
+
+<!--<div class="container">
+    <p>第二个模板页</p>
+    <div class="btn btn-info" id="div_Page1">
+        <span>Hello</span>
+    </div>
+    <div class="btn btn-info" id="div_Page2">
+        <span>验证</span>
+    </div>
+    <div class="btn btn-info" ng-click="ngClick()">
+        <span>列表</span>
+    </div>
+    <div class="btn btn-info" id="div_Page4">
+        <span>页面4</span>
+    </div>
+    <!--<div ng-app="">
+        <p>名字 : <input type="text" ng-model="name"></p>
+        <h1>Hello {{name}}</h1>
+    </div>
+    
+    
+</div>-->

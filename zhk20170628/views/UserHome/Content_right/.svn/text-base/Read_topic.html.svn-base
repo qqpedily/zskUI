@@ -1,0 +1,176 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>设定主题的最新作品</li>
+    </ul>
+    <h2 ng-value="flag">
+        设定主题的最新作品
+    </h2>
+    <div class="cont">
+        <div class="liebiao">
+            <p class="liebiao_p_text">统计文献数：<i style="color:red;">{{TotalCount}}</i>&nbsp;篇</p>
+            <div class="liebiao_detail">
+                <div class="liebiao_detail_top">
+                    <button class="btn bnt_gray" id="select_all_btn" ng-click="btnAll()">全选</button>
+                    <button class="btn bnt_gray" ng-click="deleteAll('是否删除？')">删除我选的内容</button>
+                </div>
+                <div class="liebiao_detail_bottom">
+                    <ul>
+                        <li ng-repeat="item in scholarList track by $index" data-value="{{item.UUID}}">
+                            <input type="checkbox" name="test">
+                            <a href="#" class="common_href">{{item.Production.ProductionsFieldsObj[0].Title}}<i>[ {{item.Production.ProductionsFieldsObj[0].ContentType}}]</i></a>
+                            <p class="common_p1_adress">{{item.Production.ProductionsFieldsObj[0].EntryListCustomization}} <i>{{item.Production.CreateTime | limitTo:10}}</i>                                </p>
+                            <p class="common_p1_author">{{item.Production.ProductionsFieldsObj[0].author}}</p>
+                            <p class="common_p1_download">浏览/下载 <i>{{item.Production.BrowseNum}}/{{item.Production.DownloadNum}}</i> </p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!--显示分页-->
+        <div style="margin:40px 10%;">
+            <ul class="page" maxshowpageitem="5" pagelistcount="8" id="pageSize"></ul>
+        </div>
+    </div>
+</div>
+
+<div class="footer" style="width:100%;"></div>
+<style>
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+
+    .tab_title li,
+    .tab_list li {
+        width: 45%;
+        float: left;
+        display: inline-block;
+    }
+
+    .tab_title li:last-child,
+    .tab_list li:last-child {
+        width: 10%;
+    }
+
+    .tab_list li {
+        margin-bottom: 10px;
+    }
+
+    .tab_list li i {
+        color: #a41b21;
+    }
+
+    .l_statistical_div {
+        margin-top: 10px;
+    }
+
+    .l_statistical_div label {
+        float: left;
+        width: 7em;
+        text-align: right;
+        margin: 0 10px 0 0;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .l_statistical_div span {
+        float: left;
+        margin: 0 10px 0 0;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    .l_statistical_div select {
+        width: auto;
+        box-sizing: content-box;
+        padding: 0 20px 0 10px;
+        line-height: 30px;
+        height: 30px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 7px;
+        float: left;
+    }
+
+    .l_statistical_div input {
+        float: left;
+    }
+    /*列表开始*/
+
+    i {
+        font-style: normal;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    input {
+        border: 0;
+    }
+    /*输入框*/
+
+    .l_statistical_div_input {
+        width: 200px;
+        height: 30px;
+        border: 1px solid #000;
+        border-radius: 7px;
+    }
+
+    .liebiao_p_text {
+        padding-bottom: 10px;
+    }
+
+    .liebiao_detail_top {
+        width: 100%;
+        padding: 10px 5px 10px;
+        border-radius: 5px;
+    }
+
+    .liebiao_detail_bottom>ul {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        border: 1px solid #000;
+    }
+
+    .liebiao_detail_bottom>ul>li {
+        padding: 5px 5px 5px 5px;
+        line-height: 30px;
+    }
+
+    .liebiao_detail_bottom>ul>li>p {
+        text-indent: 2rem;
+    }
+
+    .common_href {
+        font-weight: bold;
+        color: #a41b21;
+    }
+
+    .common_href>i {
+        font-weight: normal;
+        color: #000;
+    }
+
+    .common_p1_adress {
+        font-style: italic;
+        font-size: 12px;
+    }
+
+    .common_p1_author {
+        color: #a41b21;
+        font-size: 14px;
+    }
+
+    .common_p1_download {
+        font-size: 14px;
+        color: #a41b21;
+    }
+</style>

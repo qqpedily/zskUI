@@ -1,0 +1,376 @@
+<div class="admin_cont" data-value="{{global}}">
+	<div id="" name="" style="width:79%; float:left;">
+		<h2 style="color:#a41b22">
+          	  题目
+        </h2>
+        <div class="tips_cont show">
+			<p>{{AhthorList.Title}}</p>
+		</div>
+		
+        <h3 style="margin:0 auto;">内容类型：<span style="display: inline-block;">{{AhthorList.DataType}}</span></h3>
+		<h3 style="margin:0 auto;">摘要</h3>
+		<div class="tips_cont show" ng-if="AhthorList.abstract !==null" >
+			{{AhthorList.Abstract}}
+		</div>
+		<div class="tips_cont show" ng-if="AhthorList.abstract == null" >
+			{{AhthorList.EnglishAbstract}}
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>文件名称/大小</th>
+					<th>内容类型</th>
+					<th>版本类型</th>
+					<th>开放类型 </th>
+					<th>使用许可</th>
+					<th colspan="2" width="17%">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in AhthorList.CommAttachmentList track by $index">
+					<td>{{item.FileName}}[{{item.FileLength/1024 | limitTo:5}}Mb]</td>
+					<td>{{AhthorList.ContentType}}</td>
+					<td>作者接受稿</td>
+					<td>开放获取</td>
+					<td>CC_BY_NC_SA</td>
+					<td><button type="button" name="edit" class="btn btn_red btn_s edit" id="btn_look" ng-click="btn_look($event)" data-value="{{item.FileName}}">浏览</button></td>
+					<td>
+						<button type="button" name="del" class="btn btn_gray btn_s del" id="btn_getAll">
+                           <!-- <a href="{{AhthorList.Author | Email}}">下载</a>-->
+                            <a href="{{pdfSrc}}" download="下载文献文件" class="fontf" ng-click="dLoad('{{pid}}')">下载</a>
+                         </button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!--<div class="tips_cont show" style="margin-top:40px;">
+			<h3> {{pdfTitle}}</h3>
+		</div>-->
+		<div class="tongjitu">
+			<div style="border:1px solid #000; width:100%;height:700px;" id="pdfInto">
+			</div>
+		</div>
+		<h2 style="color:#a41b22; border-bottom: 1px solid #CCCCCC;">参考文献
+		<!--<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>-->
+		</h2>
+        
+		<div class="filter_cont join_form">
+			<div class="tips_cont show" id="Reference">
+				<p>{{Reference}}</p>
+				
+			</div>
+		</div>
+		<h2 style="color:#a41b22; border-bottom: 1px solid #CCCCCC;">引用</h2>
+		<div class="filter_cont join_form">
+			<div class="tips_cont show" id='Citations'>
+				<p>{{Citations}}</p>
+			</div>
+		</div>
+		<h2 style="color:#a41b22">
+            交流&amp;私信
+        </h2>
+		<div class="cont">
+			<div class="tabs">
+				<ul class="tab_list">
+					<li class="tab active" id="tab_1">普通评论</li>
+					<li class="tab" id="tab_2" ng-click="professCommentClick()">专家点评</li>
+					<li class="tab" id="tab_3">私信</li>
+					<li class="tab" id="tab_4" ng-click="reportAnErrorClick()">报错</li>
+				</ul>
+				<!-- 普通评论 -->
+				<div class="tab_cont tab_1 commonComment1" style="">
+					<div class="l_commentComment">
+						<textarea class="textarea" id="text_area_comment" onkeyup="value=value.replace(/[\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" maxlength=200 name="Numbers"></textarea>
+						<button class="btn btn_red submit" id="submit_comment1" ng-click="sendMessageclick(1)">发表评论</button>
+					</div>
+					<ul class="l_tab_list l_tab_comments">
+						<li class="tab active float_left" id="tab_1" style="font-weight:bold;">全部评论</li>
+						<li class="l_tab float_right" style="font-weight: bold;">{{TotalCount}}条</li>
+					</ul>
+					<div style="clear:both"></div>
+					<div class="join_form inline_form l_DirectMessages1">
+						<div class="l_receiving1">
+							<p ng-show="orshow">暂无评论！</p>
+							<ul class="l_comments">
+								<li class="l_comments_border" ng-repeat="item in commentList">
+									<div class="l_AllComments">
+										<div class="l_HeadPortrait" style="width:40px;height:40px;">
+											<!--<img ng-src="{{item.UploadIMG | imgSrc}}" err-src="img/pic_1.jpg" src="http://127.0.0.1:8020/zhk/img/default.jpg" height="40px;" width="40px;">-->
+												
+											<img ng-src="{{imgHeadUrl}}" alt="" height="40px;" width="40px;">	
+										</div>
+										<div class="l_title" style="display:block;">
+											<p>{{item.UserName}}</p>
+											<span>{{item.CreateTime | limitTo:10}}</span>
+										</div> <br />
+										<div style="display:block;width:100%; margin-top:30px;">
+											<p style="display:block;width:100%;">{{item.Content}}</p>
+										</div>
+										<a href="javascript:void(0);" class="l_praise" style="margin-left:20px;">赞（46）</a>
+										<a href="javascript:void(0);" class="l_praise" data-value="{{item.UUID}}" ng-click="deleteComment($event)">删除</a>
+										<div class="l_clear"></div>
+									</div>
+									<div class="l_comments_contont">
+
+										<div style="clear:both"></div>
+										<ul class="l_comments_list">
+											<li>
+												<div class="l_comments_listhuifu">
+													<p class="l_comments_listhuifuP1">
+														<div class="l_HeadPortrait" style="display:inline">
+															<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1496390028&di=43580217a08ad882da67409e9e11d2cb&imgtype=jpg&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0df431adcbef7609902823e424dda3cc7cd99eae.jpg" width="100%" height="100%" style="background-size:cover;">
+														</div>&nbsp;<span style="font-weight:bold;">{{globalStrAuthor}}</span>&nbsp;回复&nbsp;{{fullName}}</p>
+													<p class="l_comments_listhuifuP1" style="margin: 0 auto; padding-left: 10px;">感谢你的支持，我会继续努力。</p>
+													<a href="javascript:void(0);" class="l_reply">回复</a>
+													<a href="javascript:void(0);" class="l_delete">删除</a>
+												</div>
+												<div style="clear:both"></div>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+							<div class="l_clear"></div>
+						</div>
+					</div>
+				</div>
+				<!-- 专家点评 -->
+				<div class="tab_cont tab_2" style="display:none">
+					<div class="l_receiving1">
+						<div class="l_commentComment">
+							<textarea class="textarea2" id="text_area_comment1" onkeyup="value=value.replace(/[\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" maxlength=200 name="Numbers"></textarea><br />
+							<button class="btn btn_red submit" id="submit_comment1" ng-click="sendMessageclick(0)">发表评论</button>
+						</div>
+						<ul class="l_tab_list l_tab_comments">
+							<li class="tab active float_left" id="tab_1" style="font-weight:bold;">全部评论</li>
+							<li class="l_tab float_right" style="font-weight: bold;">{{TotalCount}}条</li>
+						</ul>
+						<div style="clear:both"></div>
+						<!--<p ng-show="professComment">暂无评论！</p>
+						<ul ng-show="professCommentUl">
+							<li>专家点评</li>
+							<li>专家点评</li>
+							<li>专家点评</li>
+						</ul>-->
+						<div class="join_form inline_form l_DirectMessages1">
+						<div class="l_receiving1">
+							<!--<p ng-show="professComment">暂无评论！</p>-->
+							<ul class="l_comments">
+								<li class="l_comments_border" ng-repeat="item in commentList">
+									
+									<div class="l_comments_contont">
+										<div style="clear:both"></div>
+										<div class="l_HeadPortrait" style="width:40px;height:40px;">
+											<img ng-src="{{imgHeadUrl}}" alt="" height="40px;" width="40px;">	
+										</div>
+										<div class="l_title" style="display:block;">
+											<p>{{item.UserName}}</p>
+											<span>{{item.CreateTime | limitTo:10}}</span>
+										</div> <br />
+										<div style="display:block;width:100%; margin-top:30px;">
+											<p style="display:block;width:100%;">{{item.Content}}</p>
+										</div>
+										<a href="javascript:void(0);" class="l_praise" style="margin-left:20px;">赞（5）</a>
+										<a href="javascript:void(0);" class="l_praise" data-value="{{item.UUID}}" ng-click="deleteComment($event)">删除</a>
+										<div class="l_clear"></div>
+									</div>
+								</li>
+							</ul>
+							<div class="l_clear"></div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<!-- 私信 -->
+				<div class="tab_cont tab_3" style="display:none">
+					<ul class="l_tab_list">
+						<li class="tab active" id="tab_1" style="cursor:pointer;" ng-click="receiveMes()">收信</li>
+						<li class="tab" id="tab_2" style="cursor:pointer;" ng-click="sendMes()">写信</li>
+					</ul>
+					<div class="l_DirectMessages">
+						<div class="l_receiving">
+							<div class="l_receiving_no" ng-show="noreceivedMessage">
+								<p>你还没有收到私信哦！</p>
+							</div>
+							<ul class="receiving" ng-show="yesreceiveMessage">
+								<li style="cursor:pointer;">张波给你发了一条私信</li>
+							</ul>
+						</div>
+						<div class="join_form inline_form l_receiving" ng-show="seneInfoMes">
+							<div class="input_div">
+								<label>收件人：</label>
+								<input type="text" id="shoujianren" style="width: 30%;"/>
+								<select type="text" id="selectName" style="width: 30%;margin-right: 25px;" name="key_name" placeholder="输入收件人的姓名" ng-keyup="function"  ng-click="selectInfo()">
+									<option  ng-repeat="item in resultName" UID={{item.UUID}}>{{item.UserName}}</option>
+								</select>
+								<button ng-click="searchName()">搜索</button>
+							</div>
+
+							<div class="input_div">
+								<label>内容：</label>
+								<textarea name="key_name" rows="5" onkeyup="value=value.replace(/[\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))"></textarea>
+							</div>
+							<div class="btn_div">
+								<label>&nbsp;</label>
+								<button class="btn btn_red submit" ng-click="sendMessageBtn()">发送</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--报错-->
+				<div class="tab_cont tab_4" style="display:none">
+					<p ng-show="reportError">暂无报错！</p>
+					<ul ng-show="reportErrorUl">
+						<li></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="" name="" style="width:19%;float:right">
+	<div class="tongjitu">
+		<img src="./img/baioqian_1.png" alt="">
+	</div>
+	<h4 style="color:#a41b22; border-bottom: 1px solid #ccc;">
+        作者
+    </h4>
+	<div class="tips_cont show" style="max-height: 60px;overflow: hidden;" >
+		<p ng-repeat="item in getAuthorList track by $index" style="padding: 0px auto; margin: 0px auto;">{{item}} <i style="width:7px; height:14px;display: inline-block;"><img ng-src="{{AuthorImg[$index].imgurl}}" style="padding-left: 10px; display:inline-block;"/></i></p>
+	</div>
+	<h4 style="color:#a41b22; border-bottom: 1px solid #ccc;">收录
+    </h4>
+	<div class="tips_cont show" style="margin-top:-25px;margin-bottom: 60px;display:flex;" id='Indexed'><br />
+		<p style="display: inline-block;flex:1;text-align: center;"class="{{$even ? 'scis active':'scis'}}" is-even="{{$even}}">{{AhthorList.Indexed}}</p>
+	</div>
+	<h4 style="color:#a41b22; border-bottom: 1px solid #ccc;">成果类型
+    </h4>
+	<div class="tips_cont show">
+		<p>{{AhthorList.DataType}}</p>
+	</div>
+	<h4 style="display:inline-block;color:#a41b22;"> 发表日期:</h4>
+	<p>{{AhthorList.CreateTime | limitTo:10}}</p><br>
+	<!--<h4 style="display:inline-block;color:#a41b22;"> 出版日期:</h4>
+    <span>1111</span><br>-->
+	<h4 style="display:inline-block;color:#a41b22;"> 刊名:</h4>
+	<span>{{AhthorList.Source}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 卷期页:</h4>
+	<span>{{AhthorList.Pages}}</span><br>
+	<!--<h4 style="display:inline-block;color:#a41b22;"> 影响因子:</h4>
+    <span>1111</span><br>-->
+	<h4 style="display:inline-block;color:#a41b22;"> SCI分区:</h4>
+	<!--科学分类-->
+	<span>{{AhthorList.Wos_subject}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 中科院分区:</h4>
+	<span>{{AhthorList.Wos_subject}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 关键词:</h4>
+	<span>{{AhthorList.Keyword}}{{AhthorList.Keywords_plus}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 所属项目编号:</h4>
+	<span>{{AhthorList.Projectno}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 所属项目名称:</h4>
+	<span>{{AhthorList.Project}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 语言:</h4>
+	<span>{{AhthorList.Iso}}</span><br>
+	<!--<h4 style="display:inline-block;color:#a41b22;"> ISSN号:</h4>
+    <span>{{AhthorList.ProductionsFieldsObj[0].}}</span><br>-->
+	<!--<h4 style="display:inline-block;color:#a41b22;"> 元数据:</h4>
+    <span>1111</span><br>-->
+	<h4 style="display:inline-block;color:#a41b22;"> 专题:</h4>
+	<span>{{AhthorList.Discipline}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 第一机构:</h4>
+	<span>{{AhthorList.Jigouyuanxi}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 通讯机构:</h4>
+	<!--<span>{{AhthorList.Jigouyuanxi | filterJ}}</span><br>-->
+		<span>{{AhthorList.Institution}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 所有单位:</h4>
+	<span>{{AhthorList.Department}}</span><br>
+	<!--<h4 style="display:inline-block;color:#a41b22;"> URI标识:</h4>
+    <span>{{AhthorList.ProductionsFieldsObj[0].}}</span><br>-->
+	<h4 style="display:inline-block;color:#a41b22;"> DOI标识:</h4>
+	<span>{{AhthorList.Doi}}</span><br>
+	<h4 style="display:inline-block;color:#a41b22;"> 全文链接:</h4>
+    <span>{{AhthorList.Link}}</span><br>
+</div>
+<style>
+	h4 {
+		font-weight: bold;
+		margin: 10px auto;
+		padding: 10px auto;
+	}
+	
+	span {
+		font-size: 14px;
+		-webkit-margin-before: 0;
+		-webkit-margin-after: 0;
+		-webkit-margin-start: 0;
+		-webkit-margin-end: 0;
+	}
+	
+	p{
+		margin: 10px auto;
+	}
+	.commonComment1 textarea {
+		width: calc(100% - 2em);
+		border: 2px solid rgb(169, 169, 169);
+	}
+	
+	.textarea2{
+		width: calc(100% - 2em);
+		border: 2px solid rgb(169, 169, 169);
+		border-radius: 5px;
+	}
+	
+	ul.l_tab_list.l_tab_comments {
+		border-top: 2px solid #a41b21;
+		height: 25px;
+		margin: 20px 0;
+	}
+	
+	ul.l_tab_list.l_tab_comments li {
+		line-height: 25px;
+		list-style: none !important;
+	}
+
+	#text_area_comment {
+		min-height: 30px;
+		height: 30px !important;
+		-webkit-transition: .1s min-height linear;
+		transition: .1s min-height linear;
+		width: 80%;
+		
+	}
+	
+	#text_area_comment1{
+		min-height: 30px;
+		height: 30px !important;
+		-webkit-transition: .1s min-height linear;
+		transition: .1s min-height linear;
+		width: 80%;
+	}
+	
+	p.scis{
+	    background: #ff9900;
+	    height: 17px;
+	}
+	
+	p.active{
+		background: #f100ff;
+		height: 17px;
+	}
+	
+	
+	
+	
+</style>
+<script>
+	$('#text_area_comment').on('click', function() {
+		$(this).css('min-height', '100px')
+	});
+	
+	$('#text_area_comment1').on('click', function() {
+		$(this).css('min-height', '100px')
+	});
+</script>

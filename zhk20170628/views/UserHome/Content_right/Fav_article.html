@@ -1,0 +1,137 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>收藏的作品</li>
+    </ul>
+    <h2 data-value="{{flag}}">
+        您收藏的条目如下：
+    </h2>
+    <div class="article_btn">
+        <button class="btn btn_gray" type="button" ng-click="checkAll($event); $event.stopPropagation();">全部选择</button>
+        <button class="btn btn_gray" type="button" ng-click="DeleteItem('是否删除？'); $event.stopPropagation();">删除选中条目</button>
+        <button class="btn btn_gray" type="button" ng-click="exportData('是否导出？'); $event.stopPropagation();">导出选中条目</button>
+    </div>
+
+    <div class="article_detail">
+        <ul ng-repeat="item in articleList track by $index">
+            <li data-value="{{item.UUID}}"><input type="checkbox" name="test" />{{item.ProductionName}}</li>
+        </ul>
+    </div>
+    <div class="article_btn" style="margin-top:10px;" ng-show="maxLength">
+        <button class="btn btn_gray" type="button" ng-click="checkAll()">全部选择</button>
+        <button class="btn btn_gray" type="button" ng-click="DeleteItem('是否删除？')">删除选中条目</button>
+        <button class="btn btn_gray" type="button" ng-click="exportData('是否导出？')">导出选中条目</button>
+    </div>
+    <div class="popup_cont normal" id="normal" ng-show="display">
+        <div class="input_btn">
+            <button type="button" class="btn btn_red btn_login" id="confirm" ng-click="confirm()">确定</button>
+            <button type="button" class="btn btn_red btn_login" id="abrogate" ng-click="abrogate()">取消</button>
+        </div>
+    </div>
+</div>
+<div style="margin:40px 10%;">
+    <ul class="page" maxshowpageitem="5" pagelistcount="10" id="pageSize"></ul>
+</div>
+
+<style>
+    .tab_title li,
+    .tab_list li {
+        width: calc(100% / 4);
+        display: inline-block;
+        float: left;
+    }
+
+    .tab_list li {
+        margin-bottom: 10px;
+    }
+
+    .tab_list li i {
+        color: #a41b21;
+    }
+    /*功能区开始*/
+
+    .article_btn {
+        margin-bottom: 10px;
+    }
+
+    .article_detail ul li {
+        padding: 5px 5px;
+        background-color: #efefef;
+        width: 100%;
+        line-height: 30px;
+        border-radius: 10px;
+        margin-bottom: 3px;
+    }
+
+    .article_output ul li:nth-child(1)::before {
+        text-indent: 5px;
+        height: 40px;
+        line-height: 40px;
+        content: "endNote";
+        display: block;
+        width: auto;
+    }
+
+    .article_output ul li:nth-child(2)::before {
+        text-indent: 5px;
+        height: 40px;
+        line-height: 40px;
+        content: "word2007";
+        display: block;
+        width: auto;
+    }
+
+    .article_output ul li:nth-child(3)::before {
+        text-indent: 5px;
+        height: 40px;
+        line-height: 40px;
+        content: "CSV";
+        display: block;
+        width: auto;
+    }
+
+    .article_output {
+        width: 500px;
+        background: #a41b21;
+        opacity: 0.5;
+        z-index: 99;
+        position: absolute;
+        top: 400px;
+        left: 400px;
+    }
+
+    .popup_cont {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        border: 1px solid #a41b21;
+        border-top: 20px solid #a41b21;
+        position: fixed;
+        top: 550px;
+        left: 60%;
+        z-index: 999999999;
+        width: 350px;
+        height: 50px;
+        margin: -250px 0 0 -270px;
+    }
+
+    .mask {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(51, 51, 51, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999999;
+        display: block;
+    }
+
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+</style>

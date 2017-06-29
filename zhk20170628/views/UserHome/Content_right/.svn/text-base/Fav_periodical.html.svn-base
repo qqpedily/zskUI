@@ -1,0 +1,212 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>收藏的期刊</li>
+    </ul>
+    <h2>
+        您收藏的期刊如下：
+    </h2>
+    <div class="article_btn">
+        <button class="btn btn_gray" type="button" ng-click="checkAll()">全部选择</button>
+        <button class="btn btn_gray" type="button" ng-click="DeleteItem('是否删除？')">删除选中条目</button>
+        <button class="btn btn_gray" type="button" ng-click="exportData('是否导出？')">导出选中条目</button>
+    </div>
+    <div class="article_detail">
+        <ul>
+            <li ng-repeat="item in articleList track by $index" data-value="{{item.UUID}}"><input type="checkbox" name="test">{{item.PeriodicalName}}</li>
+        </ul>
+    </div>
+    <div class="article_btn" style="margin-top:10px;" ng-show="maxLength">
+        <button class="btn btn_gray" type="button">全部选择</button>
+        <button class="btn btn_gray" type="button">删除选中条目</button>
+        <button class="btn btn_gray" type="button">导出选中条目</button>
+    </div>
+    <div class="article_output" style="display:none">
+        <ul>
+            <li>
+
+                <input type="button" value="导出" class="btn">导出为enoteca数据
+            </li>
+            <li>
+                <input type="button" value="导出" class="btn">导出为word可引用的数据
+            </li>
+            <li>
+                <input type="button" value="导出" class="btn">导出为CSV格式数据
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="footer" style="width:100%;"></div>
+</div>
+<div class="popup add_cont">
+    <div class="mask"></div>
+    <div class="popup_cont normal">
+        <h2><span class="close"><i class="fa fa-times"></i></span> 添加</h2>
+        <div class="join_form inline_form">
+            <div class="input_div">
+                <label>上级：</label>
+                <input class="main_org" name="main_org" type="text" value="复旦大学上海医学院" readonly>
+            </div>
+            <div class="input_div">
+                <label>选择添加项目：</label>
+                <input type="radio" name="org_cat" value="1" checked> 大分支机构
+                <input type="radio" name="org_cat" value="2"> 小分支机构
+                <input type="radio" name="org_cat" value="3"> 科系
+            </div>
+            <div class="input_div">
+                <label>名称：</label>
+                <input type="text" name="org_name">
+                <div class="tips_cont clearfix">
+                    <label>&nbsp;</label>
+                    <span class="warning"></span>
+                </div>
+            </div>
+            <div class="btn_div">
+                <label>&nbsp;</label>
+                <button class="btn btn_red submit_add">提交</button>
+                <button class="btn btn_gray close">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup edit_cont">
+    <div class="mask"></div>
+    <div class="popup_cont normal">
+        <h2><span class="close"><i class="fa fa-times"></i></span> 修改</h2>
+        <div class="join_form inline_form">
+            <div class="input_div">
+                <label>上级：</label>
+                <input class="main_org" name="main_org" type="text" value="复旦大学上海医学院" readonly>
+            </div>
+            <div class="input_div">
+                <label>选择添加项目：</label>
+                <input type="radio" name="org_cat" value="1" checked> 大分支机构
+                <input type="radio" name="org_cat" value="2"> 小分支机构
+                <input type="radio" name="org_cat" value="3"> 科系
+            </div>
+            <div class="input_div">
+                <label>名称：</label>
+                <input type="text" name="org_name">
+                <div class="tips_cont clearfix">
+                    <label>&nbsp;</label>
+                    <span class="warning"></span>
+                </div>
+            </div>
+            <div class="btn_div">
+                <label>&nbsp;</label>
+                <button class="btn btn_red submit">提交</button>
+                <button class="btn btn_gray close">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .tab_title li,
+    .tab_list li {
+        width: calc(100% / 4);
+        float: left;
+        display: inline-block;
+    }
+
+    .tab_list li {
+        margin-bottom: 10px;
+    }
+
+    .tab_list li i {
+        color: #a41b21;
+    }
+    /*功能区开始*/
+
+    .article_btn {
+        margin-bottom: 10px;
+    }
+
+    .article_detail ul li {
+        padding: 5px 5px;
+        background-color: #efefef;
+        width: 100%;
+        line-height: 30px;
+        border-radius: 10px;
+        margin-bottom: 3px;
+    }
+
+    .article_output ul li:nth-child(1)::before {
+        text-indent: 5px;
+        height: 40px;
+        line-height: 40px;
+        content: "endNote";
+        display: block;
+        width: auto;
+    }
+
+    .article_output ul li:nth-child(2)::before {
+        text-indent: 5px;
+        height: 40px;
+        line-height: 40px;
+        content: "word2007";
+        display: block;
+        width: auto;
+    }
+
+    .article_output ul li:nth-child(3)::before {
+        text-indent: 5px;
+        height: 40px;
+        line-height: 40px;
+        content: "CSV";
+        display: block;
+        width: auto;
+    }
+
+    .article_output {
+        width: 500px;
+        background: #a41b21;
+        opacity: 0.5;
+        z-index: 99;
+        position: absolute;
+        top: 400px;
+        left: 400px;
+    }
+
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+</style>
+<script>
+    $(function () {
+        $(".submit_add").click(function () {
+            var org_name = $("input[name='org_name']").val();
+            var list_html = '<ul class="tab_list clearfix">' +
+                '<li>&nbsp;</li>' +
+                '<li><input type="text" value="' + org_name + '"></li>' +
+                '<li><input type="text" value=""></li>' +
+                '<li>' +
+                ' <i class="fa fa-times remove_this"></i> ' +
+                '</li>' +
+                '</ul>';
+            if (org_name != "" && org_name != null) {
+                $(".popup").hide();
+                $(".org_list").append(list_html);
+                $(".remove_this").click(function () {
+                    $(this).parent().parent().remove();
+                });
+            } else {
+                $("input[name='org_name']").parent().find(".tips_cont").show().find(".warning").text(
+                    "请输入名称！")
+                $("input[name='org_name']").focus(function () {
+                    $(this).parent().find(".tips_cont").hide();
+                })
+            }
+        });
+        $(".submit").click(function () {
+            $(".edit_cont").hide();
+        });
+        $(".remove_this").click(function () {
+            $(this).parent().parent().remove();
+        });
+    })
+</script>

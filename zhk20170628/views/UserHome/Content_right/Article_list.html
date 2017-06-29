@@ -1,0 +1,38 @@
+<div class="admin_cont" style="width:747px;">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>管理员</li>
+    </ul>
+    <h2>
+        已提交作品
+    </h2>
+    <div class="tips_cont show">
+        <p>以下是您在本系统提交的作品清单</p>
+    </div>
+    <table>
+        <caption>共{{totalCount}}条，其中的1-20条</caption>
+        <thead>
+            <tr>
+                <th colspan="2" class="text_left">
+                    <button type="button" class="btn btn_gray btn_s" ng-click="checkAll()">全选</button>
+                    <!--<button type="button" class="btn btn_gray btn_s" ng-click="saveAll('是否保存')">保存所选内容</button>-->
+                </th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in Data track by $index">
+            <tr data-value="{{item.ProductionID}}">
+                <td><input type="checkbox" name="subBox"></td>
+                <td class="text_left" data-value="{{item.ProductionID}}">
+                    <h3><a href="javascript:;" style="font-size:16px;" ng-click="nextYe(item.ProductionID)">{{item.Title}}</a>[{{item.DataType}}]</h3>
+                    <p>{{item.EnglishAbstract}}</p>
+                    <p>{{item.Author}} <i class="fa fa-user font_red"></i></p>
+                    <p><i class="fa fa-download font_orange"></i> 浏览/下载：{{item.DownloadAndBrowseNum.BrowseNum}}/{{item.DownloadAndBrowseNum.DownloadNum}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--<div style="margin:40px 10%;">
+        <ul class="page" maxshowpageitem="5" pagelistcount="10" id="pageSize"></ul>
+    </div>-->
+</div>

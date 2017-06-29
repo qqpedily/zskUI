@@ -1,0 +1,54 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>加入组</li>
+    </ul>
+    <h2>
+        加入组
+    </h2>
+
+    <table>
+        <thead>
+            <tr>
+                <td colspan="7">按照时间先后顺序排列</td>
+            </tr>
+            <tr>
+                <td>组名称</td>
+                <td>邀请人</td>
+                <td>邀请时间</td>
+                <!--<td>创建人</td>-->
+                <td>创建时间</td>
+                <td>组描述</td>
+                <td>是否加入</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in Data ">
+                <td>{{item.UseGroupName}}</td>
+                <td>{{item.SysUserName}}</td>
+                <td>{{item.InvitationTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{item.UseGroupCreateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{item.UseGroupDescribe}}</td>
+                <td>
+
+                    <button type="button" class="btn btn_gray btn_s edit" ng-click="Yes(item.UUID,1)">是</button>
+                    <button type="button" class="btn btn_red  btn_s edit" ng-click="Yes(item.UUID,2)">否</button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    tabs('.tabs');
+</script>
+<style>
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+</style>

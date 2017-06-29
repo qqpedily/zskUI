@@ -1,0 +1,119 @@
+﻿<div class="admin_cont">
+	<!--data-value="{{flag}}{{loadg}}{{defg}}"-->
+	<div class="l_The_query clearfix">
+		<span>已选条件：</span>
+		<!--<button type="button" class="btn btn_red btn_s" style="margin-left:40px" ng-click="clearAll()">全部清除</button>-->
+
+		<ul class="lt_conditions clearfix ">
+			<li ng-repeat="tj in tiaoj track by $index" style="margin-bottom: 2px;"><i>{{tj.cc}}</i></li>
+		</ul>
+
+	</div>
+
+	<div class="l_The_paper">
+		<div class="l_The_paper_left" style="width:770px">
+			<ul class="filter_list al_ul" style="margin-top: 10px;">
+				<li class="font12">
+					<input type="checkbox" id="select_All" ng-model="confirmed" ng-change='aa(confirmed)'>
+					<a href="" class="a" ng-click='allSelect($event)'>展开全部 <i class="fa fa-angle-down"></i> </a>
+					<a href="" ng-click='BatchDownload()'>导出选中 <i class="fa fa-sign-out"></i> </a>
+					<div style="margin-left: 100px;display: inline-block;">
+						<span>共计：{{ data.TotalCount }}条</span>
+
+					</div>
+					<div style="float: right;display: inline-block;">
+						<span>排序：</span>
+						<a href="" ng-click="sc('Title',$event)">标题 <i class="fa fa-angle-down"></i></a>
+						<a href="" ng-click="sc('issued',$event)">年份 <i class="fa fa-angle-down"></i></a>
+						<a href="" ng-click="sc('CitationNum',$event)">引用次数 <i class="fa fa-angle-down"></i></a>
+						<!--<a href="" ng-click="sc('',$event)">影响因子 <i class="fa fa-angle-down"></i></a>-->
+					</div>
+
+				</li>
+			</ul>
+			<ul class="l_cont_ul">
+				<li class="action lt_position" ng-repeat="xx in data.Data">
+					<div class="lt_position_img">
+						<!--<img src="./css/img/icon8.png" alt="" />--></div>
+					<h3 style="margin:10px 0;line-height:30px;">
+						<input name="ckbAll" ng-model='tf' type="checkbox" id='{{$index}}' style="" ng-click="ao($index)"/>
+							<a class="tim cur" ng-click="nextYe(xx.ProductionID)" style="font-size:18px;">{{xx.Title | moreText:'50':'...'}}</a></h3>
+					<div class="l_qikan">
+						<b class="tib">[{{xx.DataType}}]</b>
+						<p class="fontMax tim">{{xx.Abstract}}</p>
+						<span>影响因子：8.3/2016</span>
+					</div>
+					<div style="clear:both;"></div>
+					<div class="l_qikan_name clearfix">
+						<ul style="l_qikan_name_ul">
+							<li>
+								<p id="pane{{$index}}" class="fontMax tim">{{xx.Author}}</p>
+							</li>
+							<li class="l_more slide active">
+								<a href="javascript:;" class="font12" id="btn-slide" ng-click="more($index)">更多作者</a>
+							</li>
+						</ul>
+					</div>
+
+					<div style="clear:both;"></div>
+					
+					
+					
+					<p class="l_con_p " style="margin-top:5px; width: 500px;">{{xx.EntryListCustomization}}
+
+					</p>
+					<!--Issued发表时间字段-->
+					<p class="l_con_p" style="width: 500px;"><!--DOI标识：{{xx.doi | fillk}}，-->{{xx.CreateTime}}年，卷号：{{xx.Volume}}，期号{{xx.Issue}}， 页码:{{xx.Pages | fillk}}</p>
+					
+					
+					
+					<div class="l_con_button clearfix" id='scis' ng-show='xx.Dataset!=""'>
+						<!--indexed-->
+						<div class="scis">{{xx.Dataset}}</div>
+					</div>
+					<div style="clear:both;"></div>
+					<dl class="l_dl_zhaiyao" style="margin-top: 10px;">
+						<dd class="l_dl_zhaiyao_icon1 cur" ng-click="morezy($index)"> 展开摘要</dd>
+						<dd class="l_dl_zhaiyao_icon2 " onmouseenter="mos(event)" onmouseleave="mon(event)">
+							<a href="" download="下载文献文件" class="fontf">导出</a>
+							<div class="downLoads">
+								<div ng-repeat='xxx in xx.CommAttachmentList'>
+									<a href="http://192.168.199.8:8555/{{xxx.FileFullPath}}" download="xxx.RelativePath" ng-click="dLoad({{xx.ProductionID}})">{{xxx.FileName}}</a>
+								</div>
+							</div>
+						</dd>
+						<dd class="l_dl_zhaiyao_icon3  cur" ng-click="scClick(xx)">收藏</dd>
+						<dd>下载次数: {{xx.DownloadAndBrowseNum.DownloadNum}} </dd>
+						<dd>浏览次数: {{xx.DownloadAndBrowseNum.BrowseNum}}</dd>
+						<dd>被引用 :{{xx.Referencecount}} (Web of Science)</dd>
+					</dl>
+					<div style="clear:both;"></div>
+					<p class="l_zhaiyao_hied" style="margin: auto 0;" id="zy{{$index}}">
+						<span ng-if='xx.Abstract !="" '>{{xx.Abstract}}</span>
+							<span ng-if='xx.Abstract =="" '>{{xx.EnglishAbstract}}</span>
+					</p>
+					<div style="clear:both;"></div>
+				</li>
+			</ul>
+			<div style="margin:40px 0;">
+				<ul class="page clearfix pS0" maxshowpageitem="5" pagelistcount="5" id="pageSize"></ul>
+
+			</div>
+			<div>
+				<span ng-model='defg'></span>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<!--<div id="loading">
+<div id="loading-center">
+<div id="loading-center-absolute">
+<div class="object" id="object_four"></div>
+<div class="object" id="object_three"></div>
+<div class="object" id="object_two"></div>
+<div class="object" id="object_one"></div>
+</div>
+</div>
+</div>-->

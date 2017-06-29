@@ -1,0 +1,51 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>管理员</li>
+    </ul>
+    <h2>
+        已拒绝作品
+    </h2>
+    <table>
+        <caption>作品及贡献</caption>
+        <thead>
+            <tr>
+            	<th>序号</th>
+                <th style="width:45%;">题名</th>
+                <th>作者</th>
+                <th>是否是我的作品</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in Data track by $index">
+            <tr class="text_left">
+            	<td>{{$index+1}}</td>
+                <td>
+                    <a href="javascript:;" ng-click="nextYe(item.ProductionID)">{{item.Production.Title}}</a>
+                </td>
+                <td>{{item.Production.Author}}</td>
+                <td>
+                    <input type="radio" name="is_mine{{$index}}" ng-click="is_mine(true,$index)" ng-checked="item.IsHave == '1'">是
+                    <input type="radio" name="is_mine{{$index}}" ng-click="is_mine(false,$index)" ng-checked="item.IsHave == '0'">否
+                </td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="4"><button class="btn btn_red btn_s" type="button" ng-click="saveAll('是否保存？')">保存</button></th>
+            </tr>
+        </thead>
+    </table>
+	<!--显示分页-->
+    <div style="margin:40px 10%;">
+        <ul class="page" maxshowpageitem="5" pagelistcount="10" id="pageSize"></ul>
+    </div>
+</div>
+<style>
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+</style>

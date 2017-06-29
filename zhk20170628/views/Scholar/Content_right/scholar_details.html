@@ -1,0 +1,213 @@
+﻿<div class="content admin_content" data-value={ {flag}}>
+	<div class="admin_nav" style="border-right:none;">
+		<h2 class="l_collaborators" style="border-bottom:none;line-height:40px;margin:0px 0px 5px 0px;">合作者 TOP5</h2>
+		<div class="l_nema">
+			<a href="javascript:void(0);" ng-repeat="item in relationAll track by $index" style="display:block">{{item}}</a>
+		</div>
+		<div class="l_img"><img src="./img/tp1.png" alt="" /></div>
+		<div class="s_btn" style="position: relative;">
+			<h2 class="l_collaborators" style="border-bottom:none;line-height:40px;margin:10px 0px 5px 0px;">分类浏览</h2>
+			<i class="fa fa-search cur" ng-click='sc()' style="position: absolute;top: 15px;right: 10px; font-size: 12px;">点击查找</i>
+		</div>
+
+		<div class="l_nema">
+			<ul class="main_list">
+				<li>
+					<a href="">内容类型</a>
+					<ul class="sub_list">
+						<li ng-repeat="dd in datac">
+							<input type="checkbox" name="ContentTypelist" value="{{dd.IndexedTypeID}}" aName='{{dd.IndexedTypeValue}}' TypeN='{{dd.IndexedType}}'>{{dd.IndexedType}}-[{{dd.IndexedTypeCount}}]
+						</li>
+					</ul>
+				
+				</li>
+				<li>
+					<a href="">发表日期</a>
+					<ul class="sub_list">
+						<li ng-repeat="dt in datat">
+							<input type="checkbox" name="YearList" value="{{dt.ContentYearID}}" aName='{{dt.ContentYear}}'>{{dt.ContentYear}}-[{{dt.ContentYearCount}}]
+						</li>
+					</ul>
+					
+				</li>
+				<li>
+					<a href="">语言</a>
+					<ul class="sub_list">
+						<li ng-repeat="dl in datay">
+							<input type="checkbox" name="LanguageList" value="{{dl.LanguageTypeID}}" aName='{{dl.LanguageType}}'>{{dl.LanguageType}}-[{{dl.LanguageTypeCount}}]
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="">收录类型</a>
+					<ul class="sub_list">
+						<li ng-repeat="ds in datas">
+							<input type="checkbox" name="IndexedTypeList" value="{{ds.IndexedTypeID}}" aName='{{ds.IndexedType}}'>{{ds.IndexedType}}-[{{ds.IndexedTypeCount}}]
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div>
+						<!--<span class="more float_right cur" style="font-weight:normal;color: #a41b21;">more...</span>-->
+						<!--<button name="submit" type="button" class="btn btn_red btn_s">精炼</button>-->
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="admin_cont">
+		<ul class="bread_crumbs" style="height:35px;">
+			<li ng-click="goHome()" style="cursor:pointer;">当前位置：</li>
+			<li ng-click="goScholar()" style="cursor:pointer;"> 学者列表<i class="fa fa-angle-right"></i></li>
+			<li><i class="fa fa-angle-right"></i></li>
+			<li>{{scholarInfo.SurnameChinese}}{{scholarInfo.NameChinese}}</li>
+			<li style="float:right;display:none">
+				<div style="width:240px;height:25px;border:1px solid #ddd;position:relative;margin-bottom:10px;"><input type="text" class="l_search_text" />
+					<a href="javascript:;" class="l_search"></a>
+				</div>
+			</li>
+		</ul>
+		<div style="clear:both;"></div>
+		<div class="l_contont_name">
+			<div class="l_contont_name_left">
+				<div class="l_contont_img" style="width:80px;height:110px;background:url('')">
+					<img src="{{downLoadUrl}}" alt="" style=' width:80px;height:110px;' err-src="{{downLoadUrl2}}">
+				</div>
+				<ul>
+					<li>
+						<h2>{{scholarInfo.SurnameChinese}}{{scholarInfo.NameChinese | limitTo:100}}</h2>
+						<a href="javascript:;" ng-click="addAt(2); $event.stopPropagation();">{{orAttion}}</a>
+						<div style="clear:both;"></div>
+					</li>
+					<li>
+						<span>曾用名：{{bm}}</span>
+					</li>
+					<li>
+						<span>文献数：</span><span class="action">{{totalArtialCount}}</span>
+					</li>
+					<li>
+						<span>研究方向：</span><span class="action">{{yjfx | moreText:'30':'...'}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="l_contont_name_right">
+				<p style="cursor:text;">{{describe | moreText:'160':'...'}}</p>
+				<a href="javascript:;" style="cursor:text;">个人介绍</a>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div class="l_statistical">
+			<div class="right_cont" id="main" style="width: 100%;height:300px;">
+
+			</div>
+		</div>
+		<div class="l_The_paper">
+			<div class="l_The_paper_left">
+				<dl class="l_The_paper_dl">
+					<dt>论文：{{totalArtialCount}}篇</dt>
+					<!--<dd class="toggleAction">导出</dd>
+					<dd>可能是{{scholarInfo.SurnameChinese}}{{scholarInfo.NameChinese | limitTo:10}}的文章</dd>
+					<dd>纠错</dd>
+					<dd>编辑</dd>
+					<dd class="action">上传</dd>-->
+				</dl>
+				<ul class="l_cont_ul">
+					<li class="action lt_position" ng-repeat="xx in Artial track by $index">
+						<!--<div class="lt_position_img">-->
+						<h3 style="margin:10px 0;line-height:30px;">
+							<a class="tim cur" ng-click="nextYe(xx.ProductionID)" style="font-size:18px;">{{xx.Title}}</a></h3>
+						<div class="l_qikan">
+							<b class="tib">[{{xx.DataType}}]</b>
+							<p class="fontMax tim">{{xx.Abstract}}</p>
+							<span>影响因子：8.3/2016</span>
+						</div>
+						<div style="clear:both;"></div>
+						<div class="l_qikan_name clearfix">
+							<ul style="l_qikan_name_ul">
+								<li style="width: 500px;">
+									<p id="pane{{$index}}" class="fontMax tim">{{xx.Author}}</p>
+								</li>
+								<li class="l_more slide active">
+									<a href="javascript:;" class="font12" id="btn-slide" ng-click="more($index)">更多作者</a>
+								</li>
+							</ul>
+						</div>
+
+						<div style="clear:both;"></div>
+
+						<p class="l_con_p " style="margin-top:5px; width: 500px;">{{xx.EntryListCustomization}}
+
+						</p>
+						<p class="l_con_p" style="width: 500px;">{{xx.doi}}{{xx.CreateTime}}年：{{xx.Issued}} 期号:{{xx.Pages}}页：{{xx.Volume}}</p>
+
+						<div class="l_con_button clearfix" id='scis' ng-show='xx.Dataset!=""'>
+						<div class="scis">{{xx.Dataset}}</div>
+					</div>
+						<div style="clear:both;"></div>
+						<dl class="l_dl_zhaiyao" style="margin-top: 10px;">
+							<dd class="l_dl_zhaiyao_icon1 cur" ng-click="morezy($index)"> 展开摘要</dd>
+							<dd class="l_dl_zhaiyao_icon2 " onmouseenter="mos(event)" onmouseleave="mon(event)">
+								<a href="" download="下载文件" class="fontf">导出</a>
+								<div class="downLoads">
+									<div ng-repeat='xxx in xx.CommAttachmentList'>
+										<a href="{{downLoadUrl}}/{{xxx.RelativePath}}" download="xxx.RelativePath">{{xxx.FileName}}</a>
+									</div>
+								</div>
+							</dd>
+							<dd class="l_dl_zhaiyao_icon3  cur" ng-click="scClick(xx.ProductionID)">收藏</dd>
+							<dd>下载次数: {{xx.DownloadNum}} </dd>
+							<dd>浏览次数: {{xx.BrowseNum}}</dd>
+							<dd>被引用 :{{xx.CitationNum}} (Web of Science)</dd>
+						</dl>
+						<div style="clear:both;"></div><!--EnglishAbstract-->
+						<p class="l_zhaiyao_hied" style="margin: auto 0;" id="zy{{$index}}">
+							<span ng-if='xx.Abstract !="" '>{{xx.Abstract}}</span>
+							<span ng-if='xx.Abstract =="" '>{{xx.EnglishAbstract}}</span>
+						</p>
+						<div style="clear:both;"></div>
+					</li>
+					<div style="margin:40px 3%;">
+						<ul class="page clearfix" maxshowpageitem="5" pagelistcount="10" id="pageSize" style="width: 600px;"></ul>
+					</div>
+				</ul>
+			</div>
+			<div class="l_The_paper_right ">
+				<dl>
+					<dt>发文可能采用的名字</dt>
+					<dd ng-repeat='xx in bmm track by $index'>{{xx.AliasName}}</dd>
+				</dl>
+				<dl>
+					<dt>关键词</dt>
+					<dd ng-repeat="item in Artial track by $index ">{{item.Keyword}},{{item.Keywords_plus}}</dd>
+				</dl>
+				<dl>
+					<dt>相关期刊[{{TotalCount}}]<a href="javascript:; ">more...</a></dt>
+					<dd ng-repeat="item in Artial track by $index">{{item.source}}</dd>
+				</dl>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<style>
+	.show {
+		display: block;
+	}
+	
+	.hide {
+		display: none
+	}
+	
+	.color {
+		color: #a41b21;
+	}
+	
+	.black {
+		color: #000;
+	}
+</style>
+<script>
+</script>

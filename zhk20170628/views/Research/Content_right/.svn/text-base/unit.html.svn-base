@@ -1,0 +1,62 @@
+﻿<div class="admin_cont" style="margin: 10px 0 0 100px;">
+	<h2 class="main_title">所有院系</h2>
+
+	<ul class="unit_list">
+		<li ng-repeat="all in AllDepartment | limitTo:n" ng-click="show1($event)">
+			<a href="javascript:void(0);" class="">
+				<i class="fa fa-angle-down" ng-click="loadTwolist(all.CID)"></i>{{ all.CollegeName}}</a>
+			<div>
+				<ul class="sub_list clearfix">
+					<li ng-repeat="alls in cs" ng-click="cc(alls.ParentID,alls.CollegeName)">{{ alls.CollegeName }}</li>
+				</ul>
+			</div>
+
+			<ul class="tooltips">
+				<li>
+					<a href="javascript:;" ng-click="oj(all.CID,1)">第一机构</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(all.CID,2)">通讯机构</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(all.CID,3)">第一或通讯</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(all.CID,4)">第一和通讯</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(all.CID,5)">全部</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<ul class="unit_list">
+		<li ng-repeat="adt in AllDataTwo track by $index" ng-click="show1($event)">
+			<a href="javascript:void(0);" class="">
+				<i class="fa fa-angle-down" ng-click="loadTwolist(adt.CID)"></i>{{ adt.CollegeName}}</a>
+			<div>
+				<ul class="sub_list clearfix">
+					<li ng-repeat="adts in cs" class="cur" ng-click="cc(adts.ParentID,adts.CollegeName)">{{ adts.CollegeName }}</li>
+				</ul>
+			</div>
+
+			<ul class="tooltips">
+				<li>
+					<a href="javascript:;" ng-click="oj(adt.CID,1)">第一机构</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(adt.CID,2)">通讯机构</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(adt.CID,3)">第一或通讯</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(adt.CID,4)">第一和通讯</a>
+				</li>
+				<li>
+					<a href="" ng-click="oj(adt.CID,5)">全部</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

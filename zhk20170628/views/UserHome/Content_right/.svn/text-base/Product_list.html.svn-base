@@ -1,0 +1,62 @@
+﻿<div class="l_The_paper_left" style="width:770px">
+    <ul class="l_cont_ul">
+        <li class="action lt_position" ng-repeat="x in Data">
+            <div class="lt_position_img"><img src="../img/icon8.png" alt=""></div>
+            <h3 style="margin:20px 0px 10px 0px"><input type="checkbox"> <a href="article_detail.html">姓名:{{ x.NameChinese }}</a></h3>
+            <div class="l_qikan">
+                <b>[邮箱]</b>
+                <p> youxian{{ x.UserEmail }}</p>
+            </div>
+            <div style="clear:both"></div>
+            <div class="l_qikan_name">
+                <ul style="l_qikan_name_ul">
+                    <li>{{ x.SurnameChinese+x.NameChinese }}</li>
+                    <li class="l_more">更多</li>
+                </ul>
+            </div>
+            <div style="clear:both"></div>
+            <p class="l_con_p" style="margin-top:5px">{{ x.UnitID }}</p>
+            <div class="l_con_button">
+                <a href="#">ssci</a>
+                <a href="#">scie</a>
+                <a href="#" class="action">cnki</a>
+            </div>
+            <div style="clear:both"></div>
+            <dl class="l_dl_zhaiyao">
+                <dd class="l_dl_zhaiyao_icon1">	展开摘要</dd>
+                <dd class="l_dl_zhaiyao_icon2">	导出</dd>
+                <dd class="l_dl_zhaiyao_icon3">收藏</dd>
+                <dd>下载次数: 0 </dd>
+                <dd>浏览次数: 25</dd>
+                <dd>被引用 0 (Web of Science)</dd>
+            </dl>
+            <div style="clear:both"></div>
+            <p class="l_zhaiyao_hied">Heracleum　dissectum　Ledeb.　has　long　been　used　as　a　wild　edible　Heracleum　dissectum　Ledeb.　has　long　been　used　as　a　wild　edibleHeracleum　dissectum　Ledeb.　has　long　been　used　as　a　wild　edibleHeracleum　dissectum　Ledeb.　has　long　been　used　as　a　wild　edibleHeracleum　dissectum　Ledeb.　has　long　been　used　as　a　wild　edible　</p>
+            <div style="clear:both"></div>
+        </li>
+    </ul>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a aria-label="Previous" ng-click="CurrentPage(1)">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li><li><a ng-click="LastPage()">上一页</a></li>          
+            <li ng-if="pageIndex>=3"><a ng-click="CurrentPage(pageIndex-2)">{{pageIndex-2}}</a></li>
+            <li ng-if="pageIndex>=3"><a ng-click="CurrentPage(pageIndex-1)">{{pageIndex-1}}</a></li>
+            <li><a ng-click="CurrentPage(pageIndex)">{{pageIndex}}</a></li>
+            <li><a ng-click="CurrentPage(pageIndex+1)">{{pageIndex+1}}</a></li>
+            <li><a ng-click="CurrentPage(pageIndex+2)">{{pageIndex+2}}</a></li>
+            <li ng-if="pageIndex<3"><a ng-click="CurrentPage(pageIndex+3)">{{pageIndex+3}}</a></li>
+            <li ng-if="pageIndex<3"><a ng-click="CurrentPage(pageIndex+4)">{{pageIndex+4}}</a></li>
+            <li><a ng-click="NextPage()">下一页</a></li>
+            <li>
+                <a aria-label="Next" ng-click="CurrentPage(pageCount)">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+
+            <li style="float:right;"><a>总页数{{pageIndex}}/{{pageCount}},共{{DataCount}}条</a></li>
+        </ul>
+    </nav>
+</div>

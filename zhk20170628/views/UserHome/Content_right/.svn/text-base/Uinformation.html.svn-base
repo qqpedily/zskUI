@@ -1,0 +1,1091 @@
+<div class="admin_cont">
+	<!--<ul class="bread_crumbs">
+		<li>所在位置：</li>
+		<li>个人工作室 <i class="fa fa-angle-right"></i></li>
+		<li>编辑个人信息</li>
+	</ul>-->
+	<h2>
+    编辑个人信息
+</h2>
+	<div class="cont">
+		<div class="tabs">
+			<ul class="tab_list">
+				<li class="tab active" id="tab_1" href="#tab1">基本信息</li>
+				<li class="tab" id="tab_2" href="#tab2">别名管理</li>
+				<li class="tab" id="tab_3" href="#tab3">学术履历</li>
+				<li class="tab" id="tab_4" href="#tab4">工作经历</li>
+				<li class="tab" id="tab_5" href="#tab5">教育背景</li>
+				<li class="tab" id="tab_6" href="#tab6">设置密码</li>
+				<li class="tab" id="tab_7" href="#tab7">联系信息</li>
+				<li class="tab" id="tab_8" href="#tab8">个人主页</li>
+			</ul>
+			<!-- 基本信息 -->
+			<div class="tab_cont tab_1" style="">
+				<div class="l_statistical">
+					<div class="l_statistical_div">
+						<label><em>*</em>姓</label>
+						<input type="text" ng-model="data.SurnameChinese" placeholder="暂无数据" />
+						<!--value="{{ data.SurnameChinese}}-{{ data.NameChinese}}"-->
+						<label>名</label>
+						<input type="text" ng-model="data.NameChinese" placeholder="暂无数据" />
+						<!--value="{{ data.NamePhoneticize}}{{ data.SurnamePhoneticize}}"-->
+					</div>
+					<div class="l_statistical_div">
+						<label>姓</label>
+						<input type="text" ng-model="data.SurnamePhoneticize" placeholder="暂无数据" />
+						<label>名</label>
+						<input type="text" ng-model="data.NamePhoneticize" placeholder="暂无数据" />
+					</div>
+					<div class="l_statistical_div">
+						<label>学位</label>
+						<select style="width:140px; " ng-model="data.Degree" ng-init="data.Degree=='0'">
+							<option value="0" ng-selected="data.Degree=='0'">学士</option>
+							<option value="1" ng-selected="data.Degree=='1'">硕士</option>
+							<option value="2" ng-selected="data.Degree=='2'">博士</option>
+							<option value="3" ng-selected="data.Degree=='3'">本科</option>
+						</select>
+						<select style="width:50px; " ng-model="data.DegreeOpen" ng-init="data.DegreeOpen=='0'">
+							<option value="0" ng-selected="data.DegreeOpen=='0'">公开</option>
+							<option value="1" ng-selected="data.DegreeOpen=='1'">不公开</option>
+						</select>
+						<label>学历</label>
+						<select style="width:140px; " ng-model="data.Education" ng-init="data.Education=='1'">
+							<!--<option value="">——请选择——</option>-->
+							<option value="1" ng-selected="data.Education=='1'">高中</option>
+							<option value="2" ng-selected="data.Education=='2'">中专</option>
+							<option value="3" ng-selected="data.Education=='3'">专科</option>
+							<option value="4" ng-selected="data.Education=='4'">本科</option>
+							<option value="5" ng-selected="data.Education=='5'">研究生</option>
+						</select>
+						<select style="width:50px; " ng-model="data.EducationOpen" ng-init="data.EducationOpen ==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="data.EducationOpen=='0'">公开</option>
+							<option value="1" ng-selected="data.EducationOpen=='1'">不公开</option>
+						</select>
+			
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>ORCID</label>
+						<input type="text " ng-model="data.Orcid " placeholder="暂无数据 " />
+						<span>查询/注册ORCID</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>Userid</label>
+						<input type="text " ng-model="data.UserID " placeholder="暂无数据 " />
+						<label>ResearchID</label>
+						<input type="text " ng-model="data.ResearchID " placeholder="暂无数据 " />
+					</div>
+					<div class="l_statistical_div ">
+						<label>首页推荐</label>
+						<input type="text " ng-model="data.IsRecommend " placeholder="暂无数据 " />
+						<label>排序</label>
+						<input type="text " ng-model="data.OrderBy " placeholder="暂无数据 " />
+					</div>
+					<div class="l_statistical_div ">
+						<label>是否导师</label>
+						<select style="width:140px; " ng-model="data.Tutor" ng-init="data.Tutor=='1'">
+							<!--<option value="">——请选择——</option>-->
+							<option value="1" ng-selected="data.Tutor=='1'">是</option>
+							<option value="2" ng-selected="data.Tutor=='2'">否</option>
+						</select>
+						<select style="width:50px;" ng-model="data.TutorOpen" ng-init="data.TutorOpen=='0'">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="data.TutorOpen=='0'">公开</option>
+							<option value="1" ng-selected="data.TutorOpen=='1'">不公开</option>
+						</select>
+					<label>特殊身份</label>
+						<select style="width:140px; " ng-model="data.IsExpert" ng-init="data.IsExpert=='0'">
+							<!--<option value="">——请选择——</option>-->
+							<option value="1" ng-selected="data.IsExpert=='1'">无</option>
+							<option value="0" ng-selected="data.IsExpert=='0'">专家</option>
+						</select>
+
+						<span>可以专家点评</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>身份</label>
+						<select style="width:230px;" ng-model="data.ItID">
+							<!--<option value="">——请选择——</option>-->
+							<option value="{{x.ItID}}" ng-repeat="x in Lbitd" >{{ x.IdentityTypeName}}</option> <!--ng-selected="data.ItID=={{x.ItID}}-->
+						</select>
+						<span>可以认领成果,上传成果</span>
+					</div>
+				</div>
+				<!--<div class="text_left " style="margin-left:300px;margin-top:20px; ">
+					<button type="button " class="btn btn_red add ">保存</button>
+					<button type="button " class="btn btn_gray save ">还原</button>
+				</div>-->
+				<!--<h4 style="line-height:10px;fon-size:14px;font-weight:600; ">
+                荣誉头衔
+            </h4>-->
+				<h4 style="line-height:10px;fon-size:14px;font-weight:600; ">
+                任职信息
+            </h4>
+				<div class="l_statistical_div " >
+					<label>性别</label>
+					<input type="radio" name="female" style="width:15px;height:15px;margin-top: 10px;margin-left:20px; " value='0' ng-model='data.Sex' />
+					<span>男</span>
+					<input type="radio" name="female " style="width:15px;height:15px;margin-top: 10px;margin-left:80px; " value='1' ng-model='data.Sex' />
+					<span>女</span>
+					<label style="margin-left:74px; ">民族</label>
+					<input type="text " ng-model="data.Nation " placeholder="暂无数据 " />
+				</div>
+				<div class="l_statistical_div ">
+					<label>出生日期</label>
+					<input type="text " ng-model="data.BirthDay " placeholder="暂无数据 " />
+					<label>政治面貌</label>
+					<input type="text " ng-model="data.PoliticalStatus " placeholder="暂无数据 " />
+				</div>
+				<div class="l_statistical_div ">
+					<label>出生地</label>
+					<input type="text " ng-model="data.BirthPlace " placeholder="暂无数据 " />
+					<label>籍贯</label>
+					<input type="text " ng-model="data.PlaceOrigin " placeholder="暂无数据 " />
+				</div>
+				<div class="input_div">
+					<label>个人简介：</label>
+					<textarea ng-model="data.PersonalProfile" class="textareaAll"></textarea>
+				</div>
+				<div class="text_left " style="margin-left:300px;margin-top:20px; ">
+					<button type="button " class="btn btn_red add " ng-Click='ngSave("确认保存？")'>保存</button>
+					<!--<button type="button " class="btn btn_gray save ">还原</button>-->
+				</div>
+				
+				<!--<h4 style="line-height:10px;fon-size:14px;font-weight:600; ">
+                外语能力
+            </h4>
+				<img src="../img/bianjiqi.png " alt=" " />
+				<div class="text_left " style="margin-left:300px;margin-top:20px; ">
+					<button type="button " class="btn btn_red add ">保存</button>
+				</div>-->
+				
+			</div>
+			<!-- 别名管理 -->
+			<div class="tab_cont tab_2 " style="display:none; ">
+				<div class="l_statistical_div ">
+					<label></label>
+					<input type="radio" name="setUserAliasRadio" checked="true" style="width:15px;height:15px;margin-top: 10px;margin-left:110px;" 
+						ng-click="UserBatchAliasRadioClick(false)"/>
+					<span>设置别名</span>
+					<input type="radio" name="setUserAliasRadio" style="width:15px;height:15px;margin-top: 10px;margin-left:30px;" 
+						ng-click="UserBatchAliasRadioClick(true)"/>
+					<span>批量增补/重建别名</span>
+				</div>
+				<div class="BatchAliasRadioPanel">
+					<div class="l_statistical_div ">
+						<label>姓氏</label>
+						<input type="text " style="width:150px;" ng-model="UserBatchAliasRadioSaveData.lastName"/>
+						<span>【中文】</span>
+						<input type="text " style="width:150px;" ng-model="UserBatchAliasRadioSaveData.lastNameSpell"/>
+						<span>【拼音】</span>
+					</div>
+					<div class="l_statistical_div" id="UserBatchAliasRadio" style="display: none;">
+						<label>名</label>
+						<input type="text " style="width:150px; " ng-model="UserBatchAliasRadioSaveData.name"/>
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="UserBatchAliasRadioSaveData.nameSpell"/>
+						<span>【拼音】</span>
+					</div>
+					<button type="button " class="btn btn_red add" style="margin: 20px 0 0 255px;" ng-click='UserBatchAliasRadioSave("确认保存？")'>保存</button>
+					<div class="l_statistical_div ">
+						<span style="color:red;margin-left:150px; ">注：名信息中多个汉字的拼音之间请用空格分开</span>
+					</div>
+				</div>
+				<div class="UpdateAliasRadioPanel" style="display: none;">
+					<div class="l_statistical_div">
+						<label>姓氏</label>
+						<input type="text " style="width:150px;" ng-model="batchAddAliaUpdateData.lastName"/>
+						<span>【中文】</span>
+						<input type="text " style="width:150px;" ng-model="batchAddAliaUpdateData.lastNameSpell"/>
+						<span>【拼音】</span>
+					</div>
+					<div class="l_statistical_div">
+						<label>名</label>
+						<input type="text " style="width:150px; " ng-model="batchAddAliaUpdateData.name"/>
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="batchAddAliaUpdateData.nameSpell"/>
+						<span>【拼音】</span>
+					</div>
+					<button type="button " class="btn btn_red add" style="margin: 20px 0 0 255px;" ng-click='UserBatchUpdateAliasRadioSave("确认保存？")'>保存</button>
+					<div class="l_statistical_div ">
+						<span style="color:red;margin-left:150px;display: none; ">注：名信息中多个汉字的拼音之间请用空格分开</span>
+					</div>
+				</div>
+				
+				
+				<div class="text_left " style="margin-left:200px;margin-top:50px; ">
+					<button type="button " class="btn btn_red add" style="margin-left: 30px;" ng-click="batchAddAlia()">批量增加别名</button>
+					<button type="button " class="btn btn_gray save" ng-click="batchAddAliaFresh()">刷新</button>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>首选中文<br />显示姓名</th>
+							<th>首选英文<br />显示姓名</th>
+							<th>姓名姓氏</th>
+							<th>科室</th>
+							<th>关键词</th>
+							<th>修改</th>
+							<th>删除</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="userAliaItem in UserAlia">
+							<td><input type="radio" name="{{userAliaItem.UUID}}" id="{{userAliaItem.UUID}}"
+								ng-checked="userAliaItem.FirstChineseShow==0" ng-click="batchAddAliaBtnChange(false,$index)"/>
+							</td>
+							<td><input type="radio" name="{{userAliaItem.UUID}}" class="{{userAliaItem.UUID}}"
+								ng-checked="userAliaItem.FirstEnglishShow==0" ng-click="batchAddAliaBtnChange(true,$index)"/>
+							</td>
+							<td ng-bind="userAliaItem.AliasName"></td>
+							<td>血液科</td>
+							<td>细胞移植</td>
+							<td>
+								<button type="button " class="btn btn_gray btn_s del" ng-click="batchAddAliaUpdateShow($index)">修改</button>
+							</td>
+							<td>
+								<button type="button " class="btn btn_gray btn_s del" ng-click="batchAddAliaDel($index,'确认删除?')">删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+			<!-- 学术履历 -->
+			<div class="tab_cont tab_3" style="display:none;">
+				<h4 style="line-height:10px;font-size:16px;font-weight:600;display: inline-block;"> 研究方向
+					<!--<div class="text_left " style="margin-left:20px;margin-top:20px; display: inline-block; ">-->
+						<button type="button " class="btn btn_red add " ng-click="researchDirectionAdd('确认添加研究方向?')">添加</button>
+					<!--</div>-->
+				</h4>
+
+				<!--研究方向-->
+				<div class="researchDirection_ceng " ng-show="flag ">
+					<div class="researchDirection ">
+						<span ng-click="researchDirection_hide() "></span>
+						<div style="margin: 20px auto; " ng-repeat="gudata in gudata">
+							<div class="l_statistical_div ">
+								<label><em>*</em>学科</label>
+								<input type="text " style="width:150px; " ng-model='gudata.SubjectName' />
+								<span>【中文】</span>
+								<input type="text " style="width:150px; " ng-model='gudata.SubjectEnglishName' />
+								<span>【英文】</span>
+							</div>
+							<div class="l_statistical_div ">
+								<label><em>*</em>研究领域</label>
+								<input type="text " style="width:150px; " ng-model='gudata.SearchDirectionNam' />
+								<span>【中文】</span>
+								<input type="text " style="width:150px; " ng-model='gudata.SearchDirectionEng' />
+								<span>【英文】</span>
+							</div>
+							<div class="l_statistical_div ">
+								<label>主题</label>
+								<input type="text " style="width:150px; " ng-model='gudata.ThemeName' />
+								<span>【中文】</span>
+								<input type="text " style="width:150px; " ng-model='gudata.ThemeEnglishName' />
+								<span>【英文】</span>
+							</div>
+							<div class="l_statistical_div ">
+								<label>访问权限</label>
+								<select style="width:50px;" ng-model="gudata.Power" ng-init="gudata.Power==0">
+									<!--<option value="">请选择</option>-->
+									<option value="0" ng-selected="gudata.Power==0">公开</option>
+									<option value="1" ng-selected="gudata.Power==1">内部公开</option>
+									<option value="2" ng-selected="gudata.Power==2">不公开</option>
+								</select>
+							</div>
+							<div class="text_left " style="margin-left:240px;margin-top:10px; ">
+								<button type="button " class="btn btn_red add " ng-click="researchDirection($index,'确认保存修改？')">修改</button>
+								<button type="button " class="btn btn_gray save " ng-click="researchDirectionDel($index,'确认删除？')">删除</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+
+				<h4 style="line-height:10px;font-size:16px;font-weight:600;display: inline-block;"> 荣誉奖励
+	                <!--<div class="text_left " style="margin-left:20px;margin-top:20px; display: inline-block; ">-->
+						<button type="button " class="btn btn_red add " ng-click="honorAwardAdd('确认添加荣誉奖励？')">添加</button>
+					<!--</div>-->
+	            </h4>
+				<div ng-repeat='uha in UserHonorAward'>
+					<div class="l_statistical_div ">
+						<label><em>*</em>获奖时间</label>
+						<input type="text " style="width:380px;"  ng-model="uha.HonorAwardTime" />
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>获奖信息</label>
+						<input type="text " style="width:380px; "  ng-model="uha.HonorAwardInfo"/>
+						<span>【中文】</span>
+		            </div>
+		            <div class="l_statistical_div ">
+		                <input type="text " style="width:380px;margin-left:110px; " ng-model="uha.HonorAwardInfoEnglish"/>
+		                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>说明</label>
+						<input type="text " style="width:380px; " ng-model="uha.HonorAwardExplain" />
+						<span>【中文】</span>
+            		</div>
+		            <div class="l_statistical_div ">
+		                <input type="text " style="width:380px;margin-left:110px; " ng-model="uha.HonorAwardExplainEnglish"/>
+		                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>机构</label>
+						<input type="text " style="width:380px;"  ng-model="uha.Mechanism" />
+						<span>【中文】</span>
+            		</div>
+		            <div class="l_statistical_div ">
+		                <input type="text " style="width:380px;margin-left:110px;" ng-model="uha.MechanismEnglish"/>
+		                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>项目名称</label>
+						<input type="text " style="width:380px; " ng-model="uha.ProjectName" />
+						<span>【中文】</span>
+            		</div>
+		            <div class="l_statistical_div ">
+		                <input type="text " style="width:380px;margin-left:110px; " ng-model="uha.ProjectEnglishName"/>
+		                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>奖励类别</label>
+						<select style="width:50px;" ng-model="uha.RewardType" ng-init="uha.RewardType==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="uha.RewardType==0">国家级</option>
+							<option value="1" ng-selected="uha.RewardType==1">省部级</option>
+							<option value="2" ng-selected="uha.RewardType==2">其他</option>
+						</select>
+						<label>奖励等级</label>
+						<select style="width:50px;" ng-model="uha.RewardLevel" ng-init="uha.RewardLevel==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="uha.RewardLevel==0">一等奖</option>
+							<option value="1" ng-selected="uha.RewardLevel==1">二等奖</option>
+							<option value="2" ng-selected="uha.RewardLevel==2">三等奖</option>
+						</select>
+					</div>
+					<div class="l_statistical_div ">
+						<label>排名</label>
+						<input type="text " style="width:150px; " ng-model="uha.Ranking" />
+						<label>访问权限</label>
+						<select style="width:50px;" ng-model="uha.Power" ng-init="uha.Power==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="uha.Power==0">公开</option>
+							<option value="1" ng-selected="uha.Power==1">内部公开</option>
+							<option value="2" ng-selected="uha.Power==2">不公开</option>
+						</select>
+					</div>
+					<div class="text_left " style="margin-left:240px;margin-top:20px; margin-bottom: 30px;">
+						<button type="button " class="btn btn_red add " ng-click="honorAward($index,'确认修改？')">修改</button>
+						<button type="button " class="btn btn_gray save " ng-click="honorAwardDel($index,'确认删除？')">删除</button>
+					</div>
+				</div>
+
+				<h4 style="line-height:10px;font-size:16px;font-weight:600; "> 研究项目
+					<!--<div class="text_left " style="margin-left:20px;margin-top:20px; display: inline-block; ">-->
+					<button type="button " class="btn btn_red add " ng-click="researchProjectAdd('确认添加研究项目？') ">添加</button>
+            	</h4>
+
+				<div ng-repeat='urp in UserResearchProject'>
+					<div class="l_statistical_div ">
+						<label><em>*</em>项目名称</label>
+						<input type="text " style="width:380px; " ng-model='urp.ProjectName' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.ProjectNameEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>项目编号</label>
+						<input type="text " style="width:380px; " ng-model='urp.ProjectID' />
+					</div>
+					<div class="l_statistical_div ">
+						<label>资助机构</label>
+						<input type="text " style="width:380px; " ng-model='urp.FinancialBody' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.FinancialBodyEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>依托机构</label>
+						<input type="text " style="width:380px; " ng-model='urp.RelyingInstitution' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.RelyingInstitutionEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>所属研究计划</label>
+						<input type="text " style="width:380px; " ng-model='urp.ResearchPlan' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.ResearchPlanEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>资助类型</label>
+						<input type="text " style="width:380px; " ng-model='urp.FundingType' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.FundingTypeEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>项目负责人</label>
+						<input type="text " style="width:150px; " ng-model='urp.ProjectLeader' />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model='urp.ProjectLeaderEnglish' />
+						<span>【英文】</span>
+					</div>
+
+					<div class="l_statistical_div ">
+						<label>主要成员</label>
+						<input type="text " style="width:380px; " ng-model='urp.LeadingMember' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.LeadingMemberEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>学科分类</label>
+						<input type="text " style="width:380px; " ng-model='urp.SubjectClassification' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.SubjectClassificationEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>承担任务经费</label>
+						<input type="text " style="width:150px; " ng-model='urp.AssumeTaskFund' />
+						<label>经费总额</label>
+						<input type="text " style="width:150px; " ng-model='urp.TotalExpenditure' />
+
+					</div>
+					<div class="l_statistical_div ">
+						<label>起讫时间</label>
+						<input type="text " style="width:150px; " ng-model='urp.StartTime' />
+						<span style="padding:0px 42px; ">至</span>
+						<input type="text " style="width:150px; " ng-model='urp.EndTime' />
+					</div>
+					<div class="l_statistical_div ">
+						<label>项目简介</label>
+						<input type="text " style="width:380px; " ng-model='urp.ProjectProfile' />
+						<span>【中文】</span>
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:110px; " ng-model='urp.ProjectProfileEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>项目角色</label>
+						<select style="width:50px;" ng-model="urp.ProjectRole" ng-init="urp.ProjectRole==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="urp.ProjectRole==0">负责人</option>
+							<option value="1" ng-selected="urp.ProjectRole==1">主要成员</option>
+							<option value="2" ng-selected="urp.ProjectRole==2">其他</option>
+						</select>
+						<label>访问权限</label>
+						<select style="width:50px;" ng-model="urp.Power" ng-init="urp.Power==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="urp.Power==0">公开</option>
+							<option value="1" ng-selected="urp.Power==1">内部公开</option>
+							<option value="2" ng-selected="urp.Power==2">不公开</option>
+						</select>
+					</div>
+					<div class="text_left " style="margin-left:240px;margin-top:20px;margin-bottom: 30px;">
+						<button type="button " class="btn btn_red add " ng-click="researchProject($index,'确认修改？')">修改</button>
+						<button type="button " class="btn btn_gray save" ng-click="researchProjectDel($index,'确认删除？')">删除</button>
+					</div>
+				</div>
+			</div>
+		
+			
+			<!-- 工作经历 -->
+
+			<div class="tab_cont tab_4 " style="display:none;">
+				
+					<h4 style="line-height:10px;font-size:16px;font-weight:600;">工作经历
+					<button type="button " class="btn btn_red add " ng-click="UserWorkExperienceAdd('确认添加工作经历？')">添加</button>
+					</h4>
+					<div ng-repeat="uwe in UserWorkExperience">
+					<div class="l_statistical_div ">
+						<label><em>*</em>时间</label>
+						<input type="text " style="width:150px; " ng-model="uwe.StartTime " />
+						<span style="padding:0px 25px 0px 25px; ">-</span>
+						<input type="text " style="width:150px; " ng-model="uwe.EndTime " />
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>机构</label>
+						<input type="text " style="width:150px; " ng-model="uwe.Mechanism " />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model=" uwe.MechanismEnglish " />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>所在部门</label>
+						<input type="text " style="width:150px; " ng-model=" uwe.Dept " />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model=" uwe.DeptEnglish " />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>职务</label>
+						<input type="text " style="width:150px; " ng-model=" uwe.Post " />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model=" uwe.PostEnglish " />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>职称</label>
+						<input type="text " style="width:150px; " ng-model=" uwe.Title " />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model=" uwe.TitleEnglish " />
+						<span>【英文】</span>
+					</div>
+					<!--<div class="l_statistical_div ">
+						<label>地域</label>
+						<select style="width:110px; " id="s_province" name="s_province">
+						</select>
+						<select style="width:110px; " id="s_city" name="s_city">
+						</select>
+						<select style="width:110px; " id="s_county" name="s_county">
+						</select>
+					</div>-->
+					<div class="l_statistical_div">
+						<label>访问权限</label>
+						<select style="width:50px;" ng-model="uwe.Power" ng-init="uwe.Power=='0'">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="uwe.Power=='0'">公开</option>
+							<option value="1" ng-selected="uwe.Power=='1'">内部公开</option>
+							<option value="2" ng-selected="uwe.Power=='2'">不公开</option>
+						</select>
+					</div>
+					<div class="text_left " style="margin-left:240px;margin-top:20px;margin-bottom: 30px; ">
+						<button type="button " class="btn btn_red add " ng-click="workUndergo($index,'确认修改？')">修改</button>
+						<button type="button " class="btn btn_gray save " ng-click="workUndergoDel($index,'确认删除？')">删除</button>
+					</div>
+				</div>
+			</div>
+			<!-- 教育背景 -->
+			<div class="tab_cont tab_5 " style="display:none; ">
+					<h4 style="line-height:10px;font-size:16px;font-weight:600; ">
+                	学习经历
+                <button type="button " class="btn btn_red add " ng-click="learningExperienceAdd('确认添加学习经历?')">添加</button>
+            </h4>
+            <div ng-repeat="ule in UserLearningExperience">
+					<div class="l_statistical_div ">
+						<label><em>*</em>时间</label>
+						<input type="text " style="width:150px; " ng-model="ule.StartTime" />
+						<span style="padding:0px 25px 0px 25px; ">-</span>
+						<input type="text " style="width:150px; " ng-model="ule.EndTime" />
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>机构</label>
+						<input type="text " style="width:150px; " ng-model="ule.Mechanism" />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="ule.MechanismEnglish" />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>院系</label>
+						<input type="text " style="width:150px; " ng-model="ule.Dept" />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="ule.DeptEnglish" />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>专业</label>
+						<input type="text " style="width:150px; " ng-model="ule.Major" />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="ule.MajorEnglish" />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>专业类别</label>
+						<input type="text " style="width:150px; " ng-model="ule.MajorType" />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="ule.MajorTypeEnglish" />
+						<span>【英文】</span>
+					</div>
+					
+					
+					<!--<div class="l_statistical_div ">
+						<div>
+						    <select class="prov"></select>
+						    <select class="city" disabled="disabled"></select>
+						    <select class="dist" disabled="disabled"></select>
+						</div>
+					</div>-->
+					<div class="l_statistical_div ">
+						<label>导师</label>
+						<input type="text " style="width:150px; " ng-model="ule.Tutor" />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model="ule.TutorEnglish" />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>学位</label>
+						<select style="width:50px;" ng-model="ule.Degree" ng-init="ule.Degree=='0'">
+							<option value="0" ng-selected="ule.Degree=='0'">博士</option>
+							<option value="1" ng-selected="ule.Degree=='1'">硕士</option>
+							<option value="2" ng-selected="ule.Degree=='2'">学士</option>
+						</select>
+						<label>访问权限</label>
+						<select style="width:50px;" ng-model="ule.Power" ng-init="ule.Power=='0'">
+							<option value="0" ng-selected="ule.Power=='0'">公开</ule>
+							<option value="1" ng-selected="ule.Power=='1'">内部公开</option>
+							<option value="2" ng-selected="ule.Power=='2'">不公开</option>
+						</select>
+					</div>
+					<div class="text_left " style="margin-left:205px;margin-top:20px;margin-bottom:20px;">
+						<button type="button " class="btn btn_red add " ng-click="learningExperience($index,'确认修改？')">修改</button>
+						<button type="button " class="btn btn_gray save " ng-click="learningExperienceDel($index,'确认删除？')">删除</button>
+					</div>
+				</div>
+				<h4 style="line-height:10px;font-size:16px;font-weight:600; ">
+                	执业资格
+                	<button type="button " class="btn btn_red add " ng-click="practiceQualificationAdd('确认添加执业资格？') ">添加</button>
+            </h4>
+				<div ng-repeat="upq in UserPracticeQualification">
+					<div class="l_statistical_div ">
+						<label><em>*</em>有效期</label>
+						<input type="text " style="width:150px; " ng-model='upq.StartTime' />
+						<span style="padding:0px 25px 0px 25px; ">-</span>
+						<input type="text " style="width:150px; " ng-model='upq.EndTime' />
+					</div>
+					<div class="l_statistical_div ">
+						<label><em>*</em>颁发机构</label>
+						<input type="text " style="width:150px; " ng-model='upq.Authority' />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model='upq.AuthorityEnglish' />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>专业类别</label>
+						<input type="text " style="width:150px; " ng-model='upq.ProfessionalCategory' />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model='upq.ProfessionalCategoryEnglish' />
+						<span>【英文】</span>
+					</div>
+					
+					<!--<div class="l_statistical_div ">
+					    <label>地域</label>
+					    <select style="width:110px; " id="s_province2" name="s_province2">
+					    	<option>请选择省</option>
+					    </select>
+					    <select style="width:110px; " id="s_city2" name="s_city2">
+					    	<option>请选择市</option>
+					    </select>
+					    <select style="width:110px; " id="s_county2" name="s_county2">
+					    	<option>请选择区县</option>
+					    </select>
+					</div>-->
+					<div class="l_statistical_div ">
+						<label>导师</label>
+						<input type="text " style="width:150px; " ng-model='upq.QualificationName' />
+						<span>【中文】</span>
+						<input type="text " style="width:150px; " ng-model='upq.QualificationEnglish' />
+						<span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>描述</label>
+						<input type="text " style="width:380px; " ng-model='upq.Description' />
+						<span>【中文】
+            </div>
+            <div class="l_statistical_div ">
+                <input type="text " style="width:380px;margin-left:80px; " ng-model='upq.DescriptionEnglish'/>
+                <span>【英文】</span>
+					</div>
+					<div class="l_statistical_div ">
+						<label>访问权限</label>
+						<select style="width:50px;" ng-model="upq.Power" ng-init="upq.Power==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="upq.Power==0">公开</option>
+							<option value="1" ng-selected="upq.Power==1">内部公开</option>
+							<option value="2" ng-selected="upq.Power==2">不公开</option>
+						</select>
+					</div>
+					<div class="text_left " style="margin-left:205px;margin-top:20px;margin-bottom: 20px;">
+						<button type="button " class="btn btn_red add " ng-click="practiceQualification($index,'确认修改？')">修改</button>
+						<button type="button " class="btn btn_gray save" ng-click="practiceQualificationDel($index,'确认删除？')">删除</button>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- 设置密码 -->
+			<div class="tab_cont tab_6 " style="display:none; ">
+				<p>密码长度不少于6个字符，且两次输入的密码必须相同</p>
+				<div class="l_statistical_div ">
+					<label>旧密码</label>
+					<input type="password" style="width:150px; " ng-model="oldPassword " />
+					<span id='setOldPassword'></span>
+				</div>
+				<div class="l_statistical_div ">
+					<label>新密码</label>
+					<input type="password" style="width:150px; " ng-model="newPassword " />
+					<span id='setNewPassword' style="display: none;">密码长度不小于6位</span>
+				</div>
+				<div class="l_statistical_div ">
+					<label>再输一遍</label>
+					<input type="password" value=" " style="width:150px;" ng-model="againPassword"/>
+					<span id='setPasswordAgain' style="display: none;">两次输入的密码不一致</span>
+				</div>
+				<div class="text_left " style="margin-left:240px;margin-top:20px; ">
+					<button type="button" class="btn btn_red add " ng-click="setPassword('确认修改密码？')">修改密码</button>
+				</div>
+				
+			</div>
+
+			<div class="setPasswordPopup_ceng " ng-show="setPasswordFlag " style="display: none;">
+				<div class="setPasswordPopup ">
+					<p>是否确定修改密码！</p>
+					<input type="button " name=" " id=" " value="确定 " ng-click="setPassword();setPassword_hide()"/>
+				</div>
+			</div>
+
+			<!-- 联系信息 -->
+			<div class="tab_cont tab_7 " style="display:none;" >
+				<div class="l_statistical_div ">
+					<label>注册邮箱</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.RegisteredMail">
+					<select style="width:50px;" ng-model="UserContactInformation.IsRegisteredMail" ng-init="UserContactInformation.IsRegisteredMail==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsRegisteredMail==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsRegisteredMail==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<label>联系邮箱</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.ContactMail ">
+					<select style="width:50px;" ng-model="UserContactInformation.IsContactMail" ng-init="UserContactInformation.IsContactMail=='0'">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsContactMail==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsContactMail==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<label>办公电话</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.OfficeTelephone" />
+					<select style="width:50px;" ng-model="UserContactInformation.IsOfficeTelephone" ng-init="UserContactInformation.IsOfficeTelephone==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsOfficeTelephone==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsOfficeTelephone==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<label>移动电话</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.MobilePhone " />
+					<select style="width:50px;" ng-model="UserContactInformation.IsMobilePhone" ng-init="UserContactInformation.IsMobilePhone==0">
+							<option value="0" ng-selected="UserContactInformation.IsMobilePhone==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsMobilePhone==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<label>传真</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.Fax " />
+					<select style="width:50px;" ng-model="UserContactInformation.IsFax" ng-init="UserContactInformation.IsFax==0">
+							<option value="0" ng-selected="UserContactInformation.IsFax==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsFax==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<label>邮编</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.ZipCode " />
+					<select style="width:50px;" ng-model="UserContactInformation.IsZipCode" ng-init="UserContactInformation.IsZipCode==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsZipCode==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsZipCode==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<label>通信地址</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.MailingAddress " />
+					<span>【中文】</span>
+					<select style="width:50px;" ng-model="UserContactInformation.IsMailingAddress" ng-init="UserContactInformation.IsMailingAddress==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsMailingAddress==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsMailingAddress==1">不公开</option>
+					</select>
+				</div>
+				<div class="l_statistical_div ">
+					<input type="text " style="width:240px;margin-left:80px; " ng-model="UserContactInformation.MailingAddressEnglish " />
+					<span>【英文】</span>
+				</div>
+				<div class="l_statistical_div ">
+					<label>Blog</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.Blog " />
+					<select style="width:50px;" ng-model="UserContactInformation.IsBlog" ng-init="UserContactInformation.IsBlog==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsBlog==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsBlog==1">不公开</option>
+					</select>
+				</div>
+				<h4 style="line-height:10px;font-size:14px;font-weight:600; ">
+                相关链接
+            </h4>
+				<div class="l_statistical_div ">
+					<label><em>*</em>链接名称</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.LinkName " />
+					<span>【中文】</span>
+					<!--<span style="color:red; ">其他个人信息链接！</span>-->
+				</div>
+				<div class="l_statistical_div ">
+					<input type="text " style="width:240px;margin-left:80px; " ng-model="UserContactInformation.LinkNameEnglinsh " />
+					<span>【英文】</span>
+				</div>
+				<div class="l_statistical_div ">
+					<label>链接地址</label>
+					<input type="text " style="width:240px; " ng-model="UserContactInformation.LinkAddress " />
+					
+					<select style="width:50px;" ng-model="UserContactInformation.IsLinkAddress" ng-init="UserContactInformation.IsLinkAddress==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserContactInformation.IsLinkAddress==0">公开</option>
+							<option value="1" ng-selected="UserContactInformation.IsLinkAddress==1">不公开</option>
+					</select>
+				</div>
+				<div class="text_left " style="margin-left:205px;margin-top:20px; ">
+					<button type="button" class="btn btn_red add" ng-click="contactInformationl('确认保存？')">保存</button>
+				</div>
+			</div>
+			
+			
+			<!-- 个人主页 -->
+			
+			<div class="tab_cont tab_8 " style="display:none; ">
+				<div class="l_PersonalHomepage ">
+					<div class="l_PersonalHomepage_img ">
+						<img ng-src="{{UserPersonalHomepageList.UploadIMG}}" id="homePageValidatePhoto" alt=" " style="background-size:cover;width: 150px;height: 180px;" />
+					</div>
+					<div class="l_PersonalHomepage_cont ">
+						<p style="color:red;margin-top:30px; ">上传文件必须是jpg或gif格式。</p>
+						<p style="color:red;margin-top:-10px; ">上传文件的尺寸为150*180（像素）。</p>
+						<p style="color:red;margin-top:-10px; ">当前照片信息。</p>
+					</div>
+					
+				</div>
+				<div class="l_clear "></div>
+				<div class="l_statistical_div" style="margin-left: 20%;margin-top: 20px;">
+	                <!--<input type="file" class="btn btn_gray save" id="file" name="img1" style="margin-left: 350px;" />-->
+	                <form id="homePagePhotoForm" action="/User/SaveUserFile" target="homePageSendPhoto"  method="post" enctype="multipart/form-data">	
+						<!--<input type="file" name="img1" id="homePageInputPhoto">-->
+						<!--<input type="text" name="useruuid" value="{{data.UUID}}">-->
+					    <!--<input type="text" style="width:240px">-->					   
+					    <!--<input type="button" value="上传" style="width:60px;" onclick="homePagePicSend()">-->
+	                	<!--<button type="button" class="btn btn_red add" onclick="document.getElementById('homePagePhotoForm').submit()">上传</button>-->
+					    <!--<p id="homePageReminder" style="color:red;margin-left: 12px;"></p>-->
+					    <!--<input type="submit">-->
+					    <!--<button type="button" class="btn btn_red add">上传</button>-->
+					    <input type="file" id="homePageInputPhoto" name="img1" onchange="javascript:validate_img(this)"/>
+    					<input type="button" style="width:60px;" onclick="homePagePicSend()" value="上传" />
+					    <br />
+					    <!--<p id="homePageReminder" style="color:red;margin: 15px 0 0 12px;"></p>--> 
+					</form>
+					<iframe style="display: none;" name="homePageSendPhoto" id="homePageSendPhoto"></iframe>
+                </div>
+				<div class="l_statistical_div " style="margin-top:40px;margin-left:220px; ">
+					<button type="button " class="btn btn_red add" ng-click="personalHomepagePicFresh()">刷新</button>
+					<button type="button " class="btn btn_gray save " ng-click="personalHomepagePicDel('确认删除？')">删除</button>
+				</div>
+				<div class="l_statistical_div " style="margin-top:30px; ">
+					<label>个人主页</label>					
+					<select style="width:300px;" ng-model="UserPersonalHomepageList.PersonalHomepagePower" 
+						ng-init="UserPersonalHomepageList.PersonalHomepagePower==0">
+							<!--<option value="">请选择</option>-->
+							<option value="0" ng-selected="UserPersonalHomepageList.PersonalHomepagePower==0">公开:所有访问者均可预览</option>
+							<option value="1" ng-selected="UserPersonalHomepageList.PersonalHomepagePower==1">不公开</option>
+					</select>
+				</div>				
+				<div class="l_statistical_div ">
+					<label>管理员设置</label>
+					<select style="width:300px;" ng-model="UserPersonalHomepageList.AdministratorSettings" 
+						ng-init="UserPersonalHomepageList.AdministratorSettings==0" >
+						<option value="0" ng-selected="UserPersonalHomepageList.AdministratorSettings==0">公开:所有访问者均可预览</option>
+						<option value="1" ng-selected="UserPersonalHomepageList.AdministratorSettings==1">不公开</option>
+					</select>
+				</div>
+				<button type="button " class="btn btn_red add" style="margin-left: 58%;" ng-click="personalHomepageUpdate('确认保存？')">保存</button>
+				<div class="l_statistical_div " style="margin-top:10px;">
+					<label>中文版</label>
+					<span style="display:block;width:240px; ">http://ir.bjmu.edu.cn/xiezy@bjmu.edu.cn</span>
+				</div>
+				<div class="l_statistical_div " style="margin-top:-10px; ">
+					<label>英文版</label>
+					<span style="display:block;width:240px; ">http://ir.bjmu.edu.cn/EN.xiezy@bjmu.edu.cn</span>
+				</div>
+			</div>
+			<p id="getUserUUID" style="display: none;">{{data.UUID}}</p>
+		</div>
+	</div>
+</div>
+<script src="./js/area.js"></script>
+
+<script type="text/javascript">
+//	_init_area();
+//	_init_area1();
+//	_init_area2();
+	tabs('.tabs');
+	//上传附件
+	var homePageInputPhoto = document.getElementById('homePageInputPhoto');
+//	var homePageReminder = document.getElementById('homePageReminder');
+	var homePageValidatePhoto = document.getElementById('homePageValidatePhoto');
+	var isAllowFile = false;
+	function validate_img(a){
+		var file = a.value;
+//		homePageReminder.innerText = " ";
+		//判断文件格式
+		//获取选件文件的全称
+        var fullName = homePageInputPhoto.value;
+        //截取字符
+        var index = fullName.lastIndexOf('.');
+        var subS = fullName.slice(index);
+        //判断
+        var upSubS = subS.toLocaleUpperCase();
+        if(upSubS =='.JPG'||upSubS =='.GIF'||upSubS =='.PNG' || upSubS =='.JPEG'){//图片格式正确
+        	//验证图片大小
+//      	var image = new Image();
+//   		image.src = file;
+//   		var height = image.height;
+//   		var width = image.width;
+//      	console.log(height);
+//      	console.log(width); 	
+        	isAllowFile = true;
+        	//图片格式正确之后调接口
+        }else {//图片格式不正确
+//          homePageReminder.innerText = '请上传jpg或gif格式的文件';
+            layer.confirm('请上传jpg或gif格式的文件', {
+	                btn: ['确认'],
+	            }, function (index) {
+	                layer.close(index);
+	            });
+        }
+	}
+	
+	function homePagePicSend(){
+		var getUserUUID = document.getElementById('getUserUUID');
+		console.log(getUserUUID.innerText);
+//		console.log(data.UUID);
+		if(isAllowFile){
+			console.log("图片上传");
+			var fileObj = document.getElementById("homePageInputPhoto").files[0]; // 获取文件对象
+//          var FileController = "http://192.168.199.8:8088/WBSAPI/User/SaveUserFile?useruuid="+getUserUUID.innerText+"&localpath="; // 接收上传文件的后台地址
+            var FileController = BaseURL+"/user/saveuserfile?useruuid="+getUserUUID.innerText+"&localpath=";
+            // FormData 对象
+            var form = new FormData();
+            console.log(form);
+            form.append("author", "hooyes");// 可以增加表单数据
+            form.append("homePageInputPhoto", fileObj);// 文件对象
+            console.log(form);
+            // XMLHttpRequest 对象
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", FileController, true);
+            xhr.onload = function () {
+//              alert("上传完成!");
+                layer.confirm('完成上传', {
+	                btn: ['确认'],
+	            }, function (index) {
+	                layer.close(index);
+	            });
+            };
+            xhr.send(form);
+            }else{
+				layer.confirm('请上传头像', {
+	                btn: ['确认'],
+	            }, function (index) {
+	                layer.close(index);
+	            });
+		}
+	}	
+</script>
+<style type="text/css ">
+	/*编辑个人心===========================================*/
+	/*学术履历===========================*/
+	/*研究方向弹出框*/
+	
+	.researchDirection_ceng {
+		/*researchDirection-ceng研究方向遮罩层*/
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.7);
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 100000000;
+		overflow: hidden;
+	}
+	
+	.researchDirection {
+		/*display: none;*/
+		width: 600px;
+		height: 220px;
+		background-color: lightgray;
+		padding: 20px;
+		border-radius: 10px;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-left: -300px;
+		margin-top: -110px;
+		border-top: 40px solid #a41b21;
+	}
+	
+	.researchDirection>span {
+		position: absolute;
+		top: -40px;
+		right: 20px;
+		font-size: 25px;
+		color: white;
+	}
+	/*设置密码弹出框*/
+	
+	.setPasswordPopup_ceng {
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.7);
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 100000000;
+		overflow: hidden;
+	}
+	
+	.setPasswordPopup {
+		width: 600px;
+		height: 40px;
+		background-color: lightgray;
+		padding: 20px;
+		border-radius: 10px;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-left: -300px;
+		margin-top: -110px;
+		border-top: 40px solid #a41b21;
+	}
+	
+	.setPasswordPopup>p {
+		display: inline-block;
+	}
+	
+	.setPasswordPopup>input {
+		display: inline-block;
+		width: 100px;
+		height: 50px;
+		margin: 0 auto;
+		border-radius: 10px;
+		margin-left: 10px;
+		float: right;
+	}
+	
+</style>

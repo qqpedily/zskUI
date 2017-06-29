@@ -1,0 +1,66 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>管理员</li>
+    </ul>
+    <h2>
+        已认领作品
+    </h2>
+
+    <table>
+        <caption>作品及贡献</caption>
+        <thead>
+            <tr>
+            	<th>序号</th>
+                <th style="width:45%;">题名</th>
+                <th>作者</th>
+                <th>作者排序</th>
+                <th>显示</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in Data track by $index">
+            <tr class="text_left" data_toggle>
+            	<td>{{$index+1}}</td>
+                <td><a href="javascript:;" ng-click="nextYe(item.ProductionID)">{{item.Production.Title}}</a></td>
+                <td>{{item.Production.Author}}</td>
+                <td><input type="checkbox" ng-model="item.CorrespondenceAuthor" 
+                    	ng-true-value="1" ng-false-value="0" ng-checked="item.CorrespondenceAuthor=='1'">是否为通讯作者</td>
+                <td><input type="checkbox" ng-model="item.IsHave" 
+                    	ng-true-value="1" ng-false-value="0" ng-checked="item.IsHave=='1'"></td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="5"><button class="btn btn_red btn_s" type="button" ng-click="saveAll('是否保存')">保存</button></th>
+            </tr>
+        </thead>
+    </table>
+    <!--显示分页-->
+    <div style="margin:40px 10%;">
+        <ul class="page" maxshowpageitem="5" pagelistcount="10" id="pageSize"></ul>
+    </div>
+    <!--<div class="paginate" ng-show="MaxLength">
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="">上一页</a></li>
+            <li class="active"><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href="">5</a></li>
+            <li><a href="">...</a></li>
+            <li><a href="">10</a></li>
+            <li><a href="">下一页</a></li>
+            <li><a href="">尾页</a></li>
+        </ul>
+    </div>-->
+</div>
+<style>
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+</style>

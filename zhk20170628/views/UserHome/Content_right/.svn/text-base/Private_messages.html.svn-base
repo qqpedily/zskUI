@@ -1,0 +1,170 @@
+<style>
+	.buttonstyle {
+		cursor: pointer;
+		display: block;
+		width: 80px;
+		height: 30px;
+		background-color: darkred;
+		line-height: 30px;
+		border-radius: 10px;
+		text-align: center;
+		color: white;
+		margin: 10px;
+	}
+</style>
+
+<div class="admin_cont" style="min-width:52em;">
+	<ul class="bread_crumbs">
+		<li>所在位置：</li>
+		<li>个人工作室 <i class="fa fa-angle-right"></i></li>
+		<li>交流&amp;私信</li>
+	</ul>
+	<!--<h2>
+                        交流&amp;私信
+                    </h2>-->
+	<div class="cont">
+		<div class="tabs">
+			<ul class="tab_list" style="margin-bottom: 0;">
+				<li class="tab active" id="tab_1" ng-click="General_comment()">普通评论</li>
+				<li class="tab" id="tab_2" ng-if="isExport == 0" ng-click="comments()">专家点评</li>
+				<li class="tab" id="tab_3" ng-click="private_letter()">私信</li>
+				<li class="tab" id="tab_4" ng-click="errors()">报错</li>
+			</ul>
+			<!-- 普通评论 -->
+			<div class="tab_cont tab_1" style="">
+				<ul class="l_tab_list l_tab_comments">
+					<!--<li class="tab active buttonstyle" id="tab_1" ng-click="allmessage()">全部评论</li>-->
+					<li class="tab buttonstyle" id="tab_2" ng-click="mymessage()">我的评论</li>
+					<li class="l_tab">我的评论：共{{count}}条</li>
+				</ul>
+				<div class="join_form inline_form l_DirectMessages1">
+					<!-- 我的评论-->
+					<div class="l_receiving1" id="myMessage" ng-repeat="item in Generaldata">
+						<ul class="l_comments">
+							<li class="l_comments_border">
+								<div class="l_AllComments" style="border-bottom: none;">
+									<div class="l_HeadPortrait">
+										<img style="vertical-align:top;width:40px;height: 40px;" error-src="../../../img/boy.jpg" ng-src={{imgHeadUrl}} alt="" style="background-size: cover;">
+									</div>
+									<div class="l_title">
+										<p>{{item.UserName}}</p>
+										<span>{{item.CreateTime | limitTo:10}}</span>
+									</div>
+									<!--<a href="jivascript:void(0);" class="l_praise">赞（46）</a>-->
+								</div>
+								<div class="l_comments_contont">
+									<p style="margin: 7px 0;">评论：{{item.Content}}</p>
+
+									<!--<ul class="l_comments_img">
+										<li>
+											<img src="../img/tp.png" alt="">
+										</li>
+										<li>
+											<img src="../img/tp.png" alt="">
+										</li>
+									</ul>-->
+									<div style="clear:both;"></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 专家点评 -->
+			<div class="tab_cont tab_2" ng-if="isExport == 0">
+				<ul class="l_tab_list l_tab_comments">
+					<!--<li class="tab active buttonstyle" id="tab_1" ng-click="allmessage()">全部评论</li>-->
+					<li class="tab buttonstyle" id="tab_2" ng-click="mymessage()">我的评论</li>
+					<li class="l_tab">我的评论：共{{count}}条</li>
+				</ul>
+				<div class="join_form inline_form l_DirectMessages1">
+					<!-- 我的评论-->
+					<div class="l_receiving1" id="myMessage" ng-repeat="item in comments">
+						<ul class="l_comments">
+							<li class="l_comments_border">
+								<div class="l_AllComments" style="border-bottom: none;">
+									<div class="l_HeadPortrait">
+										<img style="vertical-align:top;width:40px;height: 40px;" error-src="../../../img/boy.jpg" ng-src={{imgHeadUrl}} alt="" style="background-size: cover;">
+									</div>
+									<div class="l_title">
+										<p>{{item.UserName}}</p>
+										<span>{{item.CreateTime | limitTo:10}}</span>
+									</div>
+									<!--<a href="jivascript:void(0);" class="l_praise">赞（46）</a>-->
+								</div>
+								<div class="l_comments_contont">
+									<p style="margin: 7px 0;">评论：{{item.Content}}</p>
+
+									<!--<ul class="l_comments_img">
+										<li>
+											<img src="../img/tp.png" alt="">
+										</li>
+										<li>
+											<img src="../img/tp.png" alt="">
+										</li>
+									</ul>-->
+									<div style="clear:both;"></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 私信 -->
+			<div class="tab_cont tab_3" style="display:none;">
+				<ul class="l_tab_list" style="padding: 0;margin-left: 0;">
+					<li style="display: inline-block;margin-left:-118px" class="tab active buttonstyle" id="tab_1" ng-click="shouXin()">收信</li>
+					<li style="display: inline-block;" class="tab buttonstyle" id="tab_2" ng-click="writeLetter()">写信</li>
+				</ul>
+				<div class="l_DirectMessages">
+					<!--收信-->
+					<div id="shouxin" class="l_receiving" style="max-width: 50em;">
+						<div class="l_receiving_no">
+							<!--<p>你还没有收到私信哦！</p>-->
+							<ul class="receiving" style="display:block;cursor: ;" ng-repeat="item in personalLetter">
+								<li style="border: 1px solid darkgray;width: 100%; margin: 10px;padding:0 10px ;">{{item.SendUserName}}:&nbsp;&nbsp;{{item.Content}}&nbsp;&nbsp;{{item.CreateTime | limitTo:10}}</li>
+
+							</ul>
+						</div>
+					</div>
+
+					<!--写信-->
+					<div id="xiexin" class="join_form inline_form l_receiving" style="display:none;">
+						<div class="input_div">
+							<label style="width: 7%;">收件人：</label>
+							<input type="text" id="shoujianren" style="width: 30%;margin-right: 10px;">
+							<select type="text" id="selectName" style="width: 30%;margin-right: 25px;" name="key_name" placeholder="输入收件人的姓名" ng-keyup="function" ng-click="selectInfo()">
+								<option ng-repeat="item in resultName" UID={{item.UUID}}>{{item.UserName}}</option>
+							</select>
+							<button ng-click="searchName()" style="width: 5em;height: 2em;background-color: darkred;border-radius: 5px;outline: none;color: white;font-size: 14px;">搜索</button>
+						</div>
+
+						<div class="input_div">
+							<label style="width: 7%;">内容：</label>
+							<textarea name="key_name" rows="5" onkeyup="value=value.replace(/[\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))"></textarea>
+						</div>
+						<div class="btn_div">
+							<label>&nbsp;</label>
+							<button class="btn btn_red submit" ng-click="sendMessageBtn()">发送</button>
+						</div>
+					</div>
+
+					<!--<div class="btn_div">
+						<label>&nbsp;</label>
+						<button class="btn btn_red submit">发送</button>
+					</div>-->
+				</div>
+			</div>
+			<!--报错-->
+			<div class="tab_cont tab_4" style="display:none;">
+				<!--<p>没有此页面！</p>-->
+				<h3 style="width: 120px;font-size: 16px;font-weight: 400;" class="buttonstyle">暂时没有数据</h3>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<script>
+	tabs('.tabs');
+</script>

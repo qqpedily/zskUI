@@ -1,0 +1,65 @@
+<div class="admin_cont">
+    <ul class="bread_crumbs">
+        <li>所在位置：</li>
+        <li>个人工作室 <i class="fa fa-angle-right"></i></li>
+        <li>管理员</li>
+    </ul>
+    <h2 ng-value="flag">
+        待认领作品
+    </h2>
+    <table>
+        <caption>作品及贡献</caption>
+        <thead style="min-width:500px;">
+            <tr>
+            	<th style="width:8%;">序号</th>
+                <th style="width:45%;">题名</th>
+                <th style="width:10%;">作者</th>
+                <th style="width:25%;">请选择您的作者排序</th>
+                <th style="width:20%;">拒绝作品</th>
+            </tr>
+        </thead>
+        <tbody id="Claim_tbody" ng-repeat="item in Data track by $index">
+            <tr class="text_left">
+            	<td>{{$index+1}}</td>
+                <td>
+                	<!--<a href="javascript:;" ng-click="nextYe(item.ProductionID)">{{item.Title}}</a>-->
+                	<a href="javascript:;" ng-click="nextYe(item.ProductionID)">{{item.Title}}</a>
+                </td>
+                <td>{{item.Author}}</td>
+                <td>
+                	<input type="checkbox" ng-model="item.AuthorOrder" 
+                    	ng-true-value="1" ng-false-value="0" ng-checked="item.AuthorOrder=='1'">是否为第一作者
+                    <br />
+                    <input type="checkbox" style="margin-left: 0;" ng-model="item.CorrespondenceAuthor" 
+                    	ng-true-value="1" ng-false-value="0" ng-checked="item.CorrespondenceAuthor=='1'">是否为通讯作者
+                </td>
+                <td>
+                    <input type="checkbox" ng-model="item.UserClaimWorksStatus" 
+                    	ng-true-value="3" ng-false-value="0" ng-checked="item.UserClaimWorksStatus=='3'">拒绝该作品
+                </td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <td colspan="5">
+                    <button type="button" class="btn btn_red btn_s" ng-click="submit_Claim('确认提交？')">保存</button>
+                    <!--<button type="button" class="btn btn_gray btn_s" ng-click="restore_Claim('确认还原？')">还原</button>-->
+                </td>
+            </tr>
+        </thead>
+    </table>
+
+    <!--显示分页-->
+    <div style="margin:40px 10%;">
+        <ul class="page" maxshowpageitem="5" pagelistcount="10" id="pageSize"></ul>
+    </div>
+</div>
+
+<style>
+    .banner .content .admin_cont {
+        width: calc(100%);
+        padding-left: 20px;
+        display: block;
+        vertical-align: top;
+    }
+</style>

@@ -1,0 +1,15 @@
+$black:#333;
+$dark:#373737;
+$white:#fff;
+$orange:#f90;
+$yellow_light:#ffe;
+$red:#a41b21;
+$gray_darker:#666;
+$gray_dark:#a499a5;
+$gray_light:#f0f0f0;
+$gray_lighter:#eee;
+$gray:#ccc;
+$blue:#175fba;
+$blue_sky:#12bce1;
+$green:green;
+$blue_green:#8c9f94;

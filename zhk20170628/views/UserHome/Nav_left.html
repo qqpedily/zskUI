@@ -1,0 +1,137 @@
+﻿<div class="content admin_content">
+	<div class="c_left">
+		<article>
+			<div class="user_nav">
+				<h2>个人工作室</h2>
+				<ul class="main_list">
+					<li id="article">
+						<a href="javascript:;" ng-click="UlistClick()">
+							提交作品
+							<i class="fa fa-angle-down"></i>
+						</a>
+						<ul class="sub_list">
+							<li>
+								<a href="" ng-click="UlistClick()">开始提交</a>
+							</li>
+							<li>
+								<!--<a href="" ng-click="Article_list()">已提交作品[{{claimDoneCount}}]</a>-->
+								<a href="" ng-click="Article_list()">已提交作品</a>
+							</li>
+							<!--<li><a href="" ng-click="Product_list()">作品列表</a></li>-->
+						</ul>
+					</li>
+					<li id="claim">
+						<a href="" ng-click="Claim()">作品认领与全文提交<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list">
+							<li>
+								<a href="" ng-click="Claim()">待认领作品[{{claimConut}}]</a>
+							</li>
+							<li>
+								<a href="" ng-click="Claim_done()">已认领作品[{{claimAlsoCount}}]</a>
+							</li>
+							<li>
+								<a href="" ng-click="Claim_refuse()">已拒绝作品[{{claimRefuseCount}}]</a>
+							</li>
+							<li>
+								<a href="" ng-click="Claim_submit()">未提交全文[{{claimNoCount}}]</a>
+							</li>
+						</ul>
+					</li>
+					<li id="page">
+						<a href="javascript:;">个人主页<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list">
+							<li>
+								<a href="javascript:;" ng-click='toScholarDetail()'>中文版</a>
+							</li>
+							<li>
+								<a href="javascript:;" ng-click='go404()'>英文版</a>
+							</li>
+						</ul>
+					</li>
+					<li id="group">
+						<a href="javascript:;" ng-click="Group_join()">组管理<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list">
+							<li>
+								<a href="" ng-click="Group_join()">加入组</a>
+							</li>
+							<li>
+								<a href="" ng-click="Group_joined()">已加入组</a>
+							</li>
+							<li>
+								<!--<a href="" ng-click="Group_create()">创建组</a>-->
+							</li>
+						</ul>
+					</li>
+					<li id="personal">
+						<a href="javascript:;">个人数据<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list">
+							<li>
+								<a href="javascript:;" ng-click="go404()">我的照片</a>
+							</li>
+							<li>
+								<a href="javascript:;" ng-click="go404()">出诊时间</a>
+							</li>
+							<li>
+								<a href="javascript:;" ng-click="go404()">管理文件夹[1]</a>
+							</li>
+							<li>
+								<a href="javascript:;" ng-click="go404()">上传数据</a>
+							</li>
+						</ul>
+					</li>
+					<li id="edit">
+						<a href="" ng-click="UinformationClick()">编辑个人信息<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list"></ul>
+					</li>
+					<li id="fav">
+						<a href="" ng-click="Fav_article()">收藏管理<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list">
+							<li>
+								<a href="" ng-click="Fav_article()">收藏的作品</a>
+							</li>
+							<li>
+								<a href="" ng-click="Fav_scholar()">收藏的学者</a>
+							</li>
+							<!--  <li>
+                                <a href="" ng-click="Fav_periodical()">收藏的期刊</a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="Fav_topic()">收藏的主题</a>
+                            </li>-->
+						</ul>
+					</li>
+					<li id="read">
+						<a href="javascript:;" ng-click="Read_scholar()">提醒我阅读的作品<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list">
+							<li>
+								<a href="" ng-click="Read_scholar()">关注学者的最新作品</a>
+							</li>
+							<li>
+								<a href="" ng-click="Read_periodical()">关注期刊的最新作品</a>
+							</li>
+							<li>
+								<a href="" ng-click="Read_topic()">设定主题的最新作品</a>
+							</li>
+						</ul>
+					</li>
+					<li id="comm">
+						<a href="javascript:;" ng-click="Private_messages()">交流&amp;私信<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list"></ul>
+					</li>
+					<li id="user_article">
+						<a href="" ng-click="User_article_list()">个人作品统计<i class="fa fa-angle-down"></i></a>
+						<ul class="sub_list"></ul>
+					</li>
+
+				</ul>
+			</div>
+		</article>
+	</div>
+	<div class="c_right">
+		<aside>
+			<div class="cr_cw">
+				<div data-ui-view></div>
+			</div>
+		</aside>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "name": "angular-async-loader",
+  "homepage": "https://github.com/subchen/angular-async-loader",
+  "version": "1.2.1",
+  "_release": "1.2.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.1",
+    "commit": "2bd71efcee0a919f58739d7ac3b73667efab0c69"
+  },
+  "_source": "https://github.com/subchen/angular-async-loader.git",
+  "_target": "1.2.1",
+  "_originalSource": "https://github.com/subchen/angular-async-loader.git"
+}
